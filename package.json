@@ -1,0 +1,24 @@
+{
+  "name": "@plasm/types",
+  "version": "0.0.1",
+  "description": "Plasm Network node type definitions generated with @polkadot/typegen",
+  "main": "index.js",
+  "repository": "https://github.com/jacogr/sample-polkadotjs-typegen",
+  "author": "Hoon Kim <hoonsubin@icloud.com>",
+  "license": "MIT",
+  "private": true,
+  "scripts": {
+    "build": "yarn generate:defs && yarn generate:meta",
+    "generate:defs": "ts-node --skip-project node_modules/.bin/polkadot-types-from-defs --package @plasm/types/interfaces --input ./src/interfaces",
+    "generate:meta": "ts-node --skip-project node_modules/.bin/polkadot-types-from-chain --package @plasm/types/interfaces --endpoint ./plasm.json --output ./src/interfaces --strict",
+    "lint": "tsc --noEmit --pretty"
+  },
+  "dependencies": {
+    "@polkadot/api": "^1.4.0"
+  },
+  "devDependencies": {
+    "@polkadot/typegen": "^1.4.0",
+    "ts-node": "^8.6.2",
+    "typescript": "^3.8.2"
+  }
+}
