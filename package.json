@@ -2,7 +2,7 @@
     "name": "@plasm/types",
     "version": "0.0.1",
     "description": "Plasm Network node type definitions generated with @polkadot/typegen",
-    "main": "interfaces/index.js",
+    "main": "index.js",
     "lib": [
         "ES2018"
     ],

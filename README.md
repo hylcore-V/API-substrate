@@ -8,7 +8,7 @@ It is meant for developers working with TypeScript to interact with the plasm no
 ### Importing Types
 
 ```ts
-import * as plasmDefinitions from '@plasm/types';
+import * as plasmDefinitions from '@plasm/types/interfaces/definitions';
 
 const types = Object.values(plasmDefinitions).reduce((res, { types }): object => ({ ...res, ...types }), {});
 
