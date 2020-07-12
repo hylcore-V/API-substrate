@@ -58,6 +58,6 @@ $ yarn lint
 
 If everything worked well, you can see the `src/interfaces/` folder being populated with new definitions files.
 
-### Build Pack for Publishing
+### Build Package for Publishing
 
 For publishing to NPM, run `yarn run tsc` in the root of this project.
