@@ -52,13 +52,11 @@ $ yarn
 # generate type definitions
 $ yarn build
 
-# check if everything is properly imported
+# lint output
 $ yarn lint
 ```
 
 If everything worked well, you can see the `src/interfaces/` folder being populated with new definitions files.
-
-Because type definitions are generally used for linting and preventing errors in author time, tests for this package is written in `src/lintTest.ts` and checked via `yarn lint`.
 
 ### Build Pack for Publishing
 

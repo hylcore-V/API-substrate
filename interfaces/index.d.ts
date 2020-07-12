@@ -1,1 +1,1 @@
-export * from './interfaces/definitions';
+export * from './types';

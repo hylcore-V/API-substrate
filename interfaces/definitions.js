@@ -1,0 +1,10 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+var definitions_1 = require("./plasmLockdrop/definitions");
+Object.defineProperty(exports, "plasmLockdrop", { enumerable: true, get: function () { return definitions_1.default; } });
+var definitions_2 = require("./dappsStaking/definitions");
+Object.defineProperty(exports, "dappsStaking", { enumerable: true, get: function () { return definitions_2.default; } });
+var definitions_3 = require("./plasmRewards/definitions");
+Object.defineProperty(exports, "plasmRewards", { enumerable: true, get: function () { return definitions_3.default; } });
+var definitions_4 = require("./trading/definitions");
+Object.defineProperty(exports, "trading", { enumerable: true, get: function () { return definitions_4.default; } });

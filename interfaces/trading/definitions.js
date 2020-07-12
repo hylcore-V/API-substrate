@@ -1,5 +1,7 @@
+"use strict";
 /* eslint-disable @typescript-eslint/camelcase */
-export default {
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.default = {
     types: {
         OfferState: {
             _enum: ['Waiting', 'Reject', 'Accept'],
