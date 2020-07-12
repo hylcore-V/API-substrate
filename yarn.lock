@@ -211,7 +211,7 @@
     memoizee "^0.4.14"
     rxjs "^6.6.0"
 
-"@polkadot/api@1.23.1", "@polkadot/api@^1.4.0":
+"@polkadot/api@1.23.1", "@polkadot/api@^1.23.1":
   version "1.23.1"
   resolved "https://registry.yarnpkg.com/@polkadot/api/-/api-1.23.1.tgz#8cf8c0bd95c6709e815e16c0b296e7a997db6f4e"
   integrity sha512-ecO6G5RCmrwEm83YTwZNdpOR0xH32KU8M56qs9ltHrbH811ab8P+a62BDw7YywJkGJXC/p5/3eey2KKQRmSudg==
@@ -279,7 +279,7 @@
     isomorphic-fetch "^2.2.1"
     websocket "^1.0.31"
 
-"@polkadot/typegen@^1.4.0":
+"@polkadot/typegen@^1.23.1":
   version "1.23.1"
   resolved "https://registry.yarnpkg.com/@polkadot/typegen/-/typegen-1.23.1.tgz#02fcc96f367cb6b4549988e74ad3e31b781f17a5"
   integrity sha512-Q6aUWwk9zngl+ogbWP43p422Qv+zr6x5w+uGkDQmUeD4pXI/Iwrs0sFhiO7L4ic62caDkVbY7ZUgX39qii1p4g==
