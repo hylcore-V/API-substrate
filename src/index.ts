@@ -4,5 +4,5 @@
 import './interfaces/augment-api';
 import './interfaces/augment-types';
 
-// our local stuff
-export * as definitions from './interfaces/definitions';
+// export all of our local stuff
+export * from './interfaces/definitions';
