@@ -59,3 +59,7 @@ $ yarn lint
 If everything worked well, you can see the `src/interfaces/` folder being populated with new definitions files.
 
 Because type definitions are generally used for linting and preventing errors in author time, tests for this package is written in `src/index.ts` and checked via `yarn lint`.
+
+### Build Pack for Publishing
+
+For publishing to NPM, run `yarn run tsc` in the root of this project.

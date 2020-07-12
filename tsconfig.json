@@ -1,6 +1,6 @@
 {
     "compilerOptions": {
-        "target": "esnext",
+        "target": "es2017",
         "module": "esnext",
         "moduleResolution": "node",
         "allowSyntheticDefaultImports": true,
@@ -22,5 +22,5 @@
         },
         "typeRoots": ["./node_modules/@types"]
     },
-    "exclude": ["build/**/*", "node_modules"]
+    "exclude": ["interfaces/**/*", "node_modules"]
 }

@@ -3,6 +3,9 @@
     "version": "0.0.1",
     "description": "Plasm Network node type definitions generated with @polkadot/typegen",
     "main": "index.js",
+    "lib": [
+        "ES2018"
+    ],
     "files": [
         "interfaces/",
         "README.md"
@@ -25,6 +28,7 @@
         "@polkadot/api": "^1.23.1",
         "@polkadot/typegen": "^1.23.1",
         "ts-node": "^8.6.2",
+        "tsc": "^1.20150623.0",
         "typescript": "^3.8.2"
     },
     "bugs": {
