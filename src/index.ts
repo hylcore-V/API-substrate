@@ -5,11 +5,10 @@ import './interfaces/augment-api';
 import './interfaces/augment-types';
 
 // all type stuff, the only one we are using here
-import type { VoteRecord } from './interfaces';
+import type { ClaimId } from './interfaces';
 
 // external imports
 import { ApiPromise } from '@polkadot/api';
-import { createType } from '@polkadot/types';
 
 // our local stuff
 import * as definitions from './interfaces/definitions';
@@ -30,25 +29,11 @@ async function main(): Promise<void> {
     });
 
     // get a query
-    const recordOpt = await api.query.voting.voteRecords(123);
+    const recordOpt = await api.query.plasmLockdrop.requests();
 
     // the types match with what we expect here
-    let firstRecord: VoteRecord | null = recordOpt.unwrapOr(null);
+    let firstRecord: ClaimId = recordOpt[0];
     console.log(firstRecord?.toHuman());
-
-    // it even does work for arrays & subscriptions
-    api.query.signaling.activeProposals((results): void => {
-        results.forEach(([hash, blockNumber]): void => {
-            console.log(hash.toHex(), ':', blockNumber.toNumber());
-        });
-    });
-
-    // even createType works, allowing for our types to be used
-    console.log(`Balance2 bitLength:`, [
-        api.createType('Balance2').bitLength(),
-        api.registry.createType('Balance2').bitLength(),
-        createType(api.registry, 'Balance2').bitLength(),
-    ]);
 }
 
 await main();
