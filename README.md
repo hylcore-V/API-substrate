@@ -51,7 +51,7 @@ $ chmod +x get-types.sh
 # install dependencies
 $ yarn
 
-# generate type definitions
+# generate type definitions and compiled JS
 $ yarn build
 
 # lint output
