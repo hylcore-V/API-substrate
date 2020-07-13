@@ -4,8 +4,6 @@
 import { AnyNumber, ITuple } from '@polkadot/types/types';
 import { Compact, Option, Vec } from '@polkadot/types/codec';
 import { Bytes, bool, u32, u64 } from '@polkadot/types/primitive';
-import { Parameters } from '@plasm/types/interfaces/dappsStaking';
-import { ClaimId, ClaimVote, Lockdrop, TickerRate } from '@plasm/types/interfaces/plasmLockdrop';
 import { CodeHash, Gas, Schedule } from '@polkadot/types/interfaces/contracts';
 import { Extrinsic, Signature } from '@polkadot/types/interfaces/extrinsics';
 import { GrandpaEquivocationProof, KeyOwnerProof } from '@polkadot/types/interfaces/grandpa';
@@ -13,6 +11,8 @@ import { AccountId, AccountIndex, Address, Balance, BalanceOf, BlockNumber, Call
 import { Keys } from '@polkadot/types/interfaces/session';
 import { EraIndex, RewardDestination } from '@polkadot/types/interfaces/staking';
 import { Key } from '@polkadot/types/interfaces/system';
+import { Parameters } from 'plasm-types/interfaces/dappsStaking';
+import { ClaimId, ClaimVote, Lockdrop, TickerRate } from 'plasm-types/interfaces/plasmLockdrop';
 import { ApiTypes, SubmittableExtrinsic } from '@polkadot/api/types';
 
 declare module '@polkadot/api/types/submittable' {

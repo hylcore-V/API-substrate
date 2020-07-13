@@ -10,7 +10,7 @@ This package is meant to be used with the [@polakdot-js/api](https://github.com/
 
 ```ts
 ... // API imports
-import * as plasmDefinitions from '@plasm/types/interfaces/definitions';
+import * as plasmDefinitions from 'plasm-types/interfaces/definitions';
 
 const types = Object.values(plasmDefinitions).reduce((res, { types }): object => ({ ...res, ...types }), {});
 

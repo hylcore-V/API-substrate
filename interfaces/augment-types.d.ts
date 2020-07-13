@@ -1,8 +1,5 @@
 import { Compact, Option, Raw, Vec } from '@polkadot/types/codec';
 import { BitVec, Bytes, Data, DoNotConstruct, Null, StorageKey, Text, Type, U256, bool, i128, i16, i256, i32, i64, i8, u128, u16, u256, u32, u64, u8, usize } from '@polkadot/types/primitive';
-import { EraStakingPoints, Parameters, StakingParameters } from '@plasm/types/interfaces/dappsStaking';
-import { AuthorityVote, Claim, ClaimId, ClaimVote, DollarRate, Lockdrop, TickerRate } from '@plasm/types/interfaces/plasmLockdrop';
-import { OfferOf, OfferState } from '@plasm/types/interfaces/trading';
 import { BlockAttestations, IncludedBlocks, MoreAttestations } from '@polkadot/types/interfaces/attestations';
 import { RawAuraPreDigest } from '@polkadot/types/interfaces/aura';
 import { ExtrinsicOrHash, ExtrinsicStatus } from '@polkadot/types/interfaces/author';
@@ -29,6 +26,7 @@ import { StorageKind } from '@polkadot/types/interfaces/offchain';
 import { DeferredOffenceOf, Kind, OffenceDetails, Offender, OpaqueTimeSlot, ReportIdOf, Reporter } from '@polkadot/types/interfaces/offences';
 import { AbridgedCandidateReceipt, AttestedCandidate, AuctionIndex, Bidder, CandidateCommitments, CandidateReceipt, CollatorId, CollatorSignature, DoubleVoteReport, DownwardMessage, GlobalValidationSchedule, HeadData, IncomingParachain, IncomingParachainDeploy, IncomingParachainFixed, LeasePeriod, LeasePeriodOf, LocalValidationData, NewBidder, ParaId, ParaInfo, ParaPastCodeMeta, ParaScheduling, ParachainDispatchOrigin, Remark, Retriable, Scheduling, SigningContext, SlotRange, Statement, SubId, UpwardMessage, ValidationCode, ValidatorSignature, ValidityAttestation, WinningData, WinningDataEntry } from '@polkadot/types/interfaces/parachains';
 import { RuntimeDispatchInfo } from '@polkadot/types/interfaces/payment';
+import { Approvals } from '@polkadot/types/interfaces/poll';
 import { ActiveRecovery, RecoveryConfig } from '@polkadot/types/interfaces/recovery';
 import { RpcMethods } from '@polkadot/types/interfaces/rpc';
 import { AccountId, AccountIdOf, AccountIndex, Address, AssetId, Balance, BalanceOf, Block, BlockNumber, Call, ChangesTrieConfiguration, Consensus, ConsensusEngineId, Digest, DigestItem, ExtrinsicsWeight, Fixed128, Fixed64, H160, H256, H512, Hash, Header, Index, Justification, KeyTypeId, KeyValue, LockIdentifier, LookupSource, LookupTarget, ModuleId, Moment, OpaqueCall, Origin, Pays, Perbill, Percent, Permill, Perquintill, Phantom, PhantomData, PreRuntime, ProxyType, Releases, RuntimeDbWeight, Seal, SealV0, SignedBlock, StorageData, ValidatorId, Weight, WeightMultiplier } from '@polkadot/types/interfaces/runtime';
@@ -43,6 +41,9 @@ import { OpenTip, OpenTipFinderTo225, OpenTipTip, OpenTipTo225, TreasuryProposal
 import { Multiplier } from '@polkadot/types/interfaces/txpayment';
 import { CallHash, Multisig, Timepoint } from '@polkadot/types/interfaces/utility';
 import { VestingInfo } from '@polkadot/types/interfaces/vesting';
+import { EraStakingPoints, Parameters, StakingParameters } from 'plasm-types/interfaces/dappsStaking';
+import { AuthorityVote, Claim, ClaimId, ClaimVote, DollarRate, Lockdrop, TickerRate } from 'plasm-types/interfaces/plasmLockdrop';
+import { OfferOf, OfferState } from 'plasm-types/interfaces/trading';
 declare module '@polkadot/types/types/registry' {
     interface InterfaceTypes {
         BitVec: BitVec;
@@ -1270,6 +1271,9 @@ declare module '@polkadot/types/types/registry' {
         WinningDataEntry: WinningDataEntry;
         'Option<WinningDataEntry>': Option<WinningDataEntry>;
         'Vec<WinningDataEntry>': Vec<WinningDataEntry>;
+        Approvals: Approvals;
+        'Option<Approvals>': Option<Approvals>;
+        'Vec<Approvals>': Vec<Approvals>;
         CallMetadataV0: CallMetadataV0;
         'Option<CallMetadataV0>': Option<CallMetadataV0>;
         'Vec<CallMetadataV0>': Vec<CallMetadataV0>;

@@ -1,9 +1,6 @@
 import { AnyNumber, ITuple, Observable } from '@polkadot/types/types';
 import { Option, Vec } from '@polkadot/types/codec';
 import { Bytes, bool, u32, u64 } from '@polkadot/types/primitive';
-import { EraStakingPoints, Parameters, StakingParameters } from '@plasm/types/interfaces/dappsStaking';
-import { AuthorityVote, Claim, ClaimId, DollarRate } from '@plasm/types/interfaces/plasmLockdrop';
-import { OfferOf } from '@plasm/types/interfaces/trading';
 import { BabeAuthorityWeight, MaybeRandomness, NextConfigDescriptor, Randomness } from '@polkadot/types/interfaces/babe';
 import { AccountData, BalanceLock } from '@polkadot/types/interfaces/balances';
 import { AuthorityId } from '@polkadot/types/interfaces/consensus';
@@ -14,6 +11,9 @@ import { Keys, SessionIndex } from '@polkadot/types/interfaces/session';
 import { ActiveEraInfo, EraIndex, Forcing, Nominations, RewardDestination, StakingLedger } from '@polkadot/types/interfaces/staking';
 import { AccountInfo, DigestOf, EventIndex, EventRecord, LastRuntimeUpgradeInfo, Phase } from '@polkadot/types/interfaces/system';
 import { Multiplier } from '@polkadot/types/interfaces/txpayment';
+import { EraStakingPoints, Parameters, StakingParameters } from 'plasm-types/interfaces/dappsStaking';
+import { AuthorityVote, Claim, ClaimId, DollarRate } from 'plasm-types/interfaces/plasmLockdrop';
+import { OfferOf } from 'plasm-types/interfaces/trading';
 import { ApiTypes } from '@polkadot/api/types';
 declare module '@polkadot/api/types/storage' {
     interface AugmentedQueries<ApiType> {
