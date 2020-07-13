@@ -1,13 +1,15 @@
 # Plasm Network node types
 
-This is a substrate type definitions made with @polkadot/typegen.
+This is a substrate type definitions made with [@polkadot-js/typegen](https://www.npmjs.com/package/@polkadot/typegen).
 It is meant for developers working with TypeScript to interact with the plasm node.
+This package is meant to be used with the [@polakdot-js/api](https://github.com/polkadot-js/api) library.
 
 ## Usage
 
 ### Importing Types
 
 ```ts
+... // API imports
 import * as plasmDefinitions from '@plasm/types/interfaces/definitions';
 
 const types = Object.values(plasmDefinitions).reduce((res, { types }): object => ({ ...res, ...types }), {});
@@ -61,3 +63,10 @@ If everything worked well, you can see the `src/interfaces/` folder being popula
 ### Build Package for Publishing
 
 For publishing to NPM, run `yarn run tsc` in the root of this project.
+
+## Adding New Types
+
+For every new runtime module added to Plasm Network, you will have to generate a new one.
+Custom types are defined inside `definitions.ts`.
+`/src/interfaces/definitions.ts` exports all the runtime definitions while the actual type definitions are defined in `/src/interfaces/<module>/definitions.ts`.
+You can add new types or edit existing ones by working with the respective folders.
