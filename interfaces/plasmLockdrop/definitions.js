@@ -26,8 +26,8 @@ exports.default = {
         },
         Claim: {
             params: 'Lockdrop',
-            approve: 'AuthorityVote',
-            decline: 'AuthorityVote',
+            approve: 'BTreeSet<AuthorityId>',
+            decline: 'BTreeSet<AuthorityId>',
             amount: 'u128',
             complete: 'bool',
         },

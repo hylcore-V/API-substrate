@@ -1,4 +1,4 @@
-import { Struct, U8aFixed } from '@polkadot/types/codec';
+import { BTreeSet, Struct, U8aFixed } from '@polkadot/types/codec';
 import { bool, u128, u16, u32, u64, u8 } from '@polkadot/types/primitive';
 import { AccountId, H256 } from '@polkadot/types/interfaces/runtime';
 /** @name AuthorityId */
@@ -10,8 +10,8 @@ export interface AuthorityVote extends u32 {
 /** @name Claim */
 export interface Claim extends Struct {
     readonly params: Lockdrop;
-    readonly approve: AuthorityVote;
-    readonly decline: AuthorityVote;
+    readonly approve: BTreeSet<AuthorityId>;
+    readonly decline: BTreeSet<AuthorityId>;
     readonly amount: u128;
     readonly complete: bool;
 }
