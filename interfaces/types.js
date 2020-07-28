@@ -16,3 +16,5 @@ __exportStar(require("./plasmLockdrop/types"), exports);
 __exportStar(require("./dappsStaking/types"), exports);
 __exportStar(require("./plasmRewards/types"), exports);
 __exportStar(require("./trading/types"), exports);
+__exportStar(require("./ovm/types"), exports);
+__exportStar(require("./plasma/types"), exports);

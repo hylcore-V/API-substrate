@@ -13,7 +13,9 @@ import { Keys } from '@polkadot/types/interfaces/session';
 import { EraIndex, RewardDestination } from '@polkadot/types/interfaces/staking';
 import { Key } from '@polkadot/types/interfaces/system';
 import { Parameters } from 'plasm-types/interfaces/dappsStaking';
+import { PredicateHash, PropertyOf } from 'plasm-types/interfaces/ovm';
 import { AuthorityVote, ClaimId, ClaimVote, Lockdrop, TickerRate } from 'plasm-types/interfaces/plasmLockdrop';
+import { RangeOf } from 'plasm-types/interfaces/plasma';
 import { ApiTypes, SubmittableExtrinsic } from '@polkadot/api/types';
 
 declare module '@polkadot/api/types/submittable' {
@@ -136,7 +138,7 @@ declare module '@polkadot/api/types/submittable' {
        * 
        * The schedule must have a greater version than the stored schedule.
        **/
-      updateSchedule: AugmentedSubmittable<(schedule: Schedule | { version?: any; putCodePerByteCost?: any; growMemCost?: any; regularOpCost?: any; returnDataPerByteCost?: any; eventDataPerByteCost?: any; eventPerTopicCost?: any; eventBaseCost?: any; sandboxDataReadCost?: any; sandboxDataWriteCost?: any; transferCost?: any; maxEventTopics?: any; maxStackHeight?: any; maxMemoryPages?: any; enablePrintln?: any; maxSubjectLen?: any } | string | Uint8Array) => SubmittableExtrinsic<ApiType>>;
+      updateSchedule: AugmentedSubmittable<(schedule: Schedule | { version?: any; putCodePerByteCost?: any } | string | Uint8Array) => SubmittableExtrinsic<ApiType>>;
     };
     dappsStaking: {
       /**
@@ -467,17 +469,17 @@ declare module '@polkadot/api/types/submittable' {
        * 
        * TODO: weight
        **/
-      challenge: AugmentedSubmittable<(property: PropertyOf | null, challengeProperty: PropertyOf | null) => SubmittableExtrinsic<ApiType>>;
+      challenge: AugmentedSubmittable<(property: PropertyOf | { predicateAddress?: any; inputs?: any } | string | Uint8Array, challengeProperty: PropertyOf | { predicateAddress?: any; inputs?: any } | string | Uint8Array) => SubmittableExtrinsic<ApiType>>;
       /**
        * Claims property and create new game. Id of game is hash of claimed property
        * TODO: weight
        **/
-      claim: AugmentedSubmittable<(claim: PropertyOf | null) => SubmittableExtrinsic<ApiType>>;
+      claim: AugmentedSubmittable<(claim: PropertyOf | { predicateAddress?: any; inputs?: any } | string | Uint8Array) => SubmittableExtrinsic<ApiType>>;
       /**
        * Deploy predicate and made predicate address as AccountId.
        * TODO: weight
        **/
-      instantiate: AugmentedSubmittable<(predicateHash: PredicateHash | null, inputs: Bytes | string | Uint8Array) => SubmittableExtrinsic<ApiType>>;
+      instantiate: AugmentedSubmittable<(predicateHash: PredicateHash | string | Uint8Array, inputs: Bytes | string | Uint8Array) => SubmittableExtrinsic<ApiType>>;
       /**
        * Stores the given binary Wasm code into the chain's storage and returns its `codehash`.
        * You can instantiate contracts only with stored code.
@@ -491,14 +493,14 @@ declare module '@polkadot/api/types/submittable' {
        * 
        * TODO: weight
        **/
-      removeChallenge: AugmentedSubmittable<(property: PropertyOf | null, challengeProperty: PropertyOf | null) => SubmittableExtrinsic<ApiType>>;
+      removeChallenge: AugmentedSubmittable<(property: PropertyOf | { predicateAddress?: any; inputs?: any } | string | Uint8Array, challengeProperty: PropertyOf | { predicateAddress?: any; inputs?: any } | string | Uint8Array) => SubmittableExtrinsic<ApiType>>;
       /**
        * set game result to given result value.
        * only called from dispute contract
        * 
        * TODO: weight
        **/
-      setGameResult: AugmentedSubmittable<(property: PropertyOf | null, result: bool | boolean | Uint8Array) => SubmittableExtrinsic<ApiType>>;
+      setGameResult: AugmentedSubmittable<(property: PropertyOf | { predicateAddress?: any; inputs?: any } | string | Uint8Array, result: bool | boolean | Uint8Array) => SubmittableExtrinsic<ApiType>>;
       /**
        * settle game
        * settle started game whose dispute period has passed.
@@ -508,7 +510,7 @@ declare module '@polkadot/api/types/submittable' {
        * 
        * TODO: weight
        **/
-      settleGame: AugmentedSubmittable<(property: PropertyOf | null) => SubmittableExtrinsic<ApiType>>;
+      settleGame: AugmentedSubmittable<(property: PropertyOf | { predicateAddress?: any; inputs?: any } | string | Uint8Array) => SubmittableExtrinsic<ApiType>>;
     };
     plasma: {
       /**
@@ -523,7 +525,7 @@ declare module '@polkadot/api/types/submittable' {
        * - @param initial_state The initial state of deposit
        * TODO: weight
        **/
-      deposit: AugmentedSubmittable<(plappsId: AccountId | string | Uint8Array, amount: BalanceOf | AnyNumber | Uint8Array, initialState: PropertyOf | null, gasLimit: Gas | AnyNumber | Uint8Array) => SubmittableExtrinsic<ApiType>>;
+      deposit: AugmentedSubmittable<(plappsId: AccountId | string | Uint8Array, amount: BalanceOf | AnyNumber | Uint8Array, initialState: PropertyOf | { predicateAddress?: any; inputs?: any } | string | Uint8Array, gasLimit: Gas | AnyNumber | Uint8Array) => SubmittableExtrinsic<ApiType>>;
       /**
        * TODO: weight, not external
        **/
@@ -534,7 +536,7 @@ declare module '@polkadot/api/types/submittable' {
        * its first input is range to create checkpoint and second input is property for stateObject.
        * TODO: weight
        **/
-      finalizeCheckpoint: AugmentedSubmittable<(plappsId: AccountId | string | Uint8Array, checkpointProperty: PropertyOf | null) => SubmittableExtrinsic<ApiType>>;
+      finalizeCheckpoint: AugmentedSubmittable<(plappsId: AccountId | string | Uint8Array, checkpointProperty: PropertyOf | { predicateAddress?: any; inputs?: any } | string | Uint8Array) => SubmittableExtrinsic<ApiType>>;
       /**
        * finalizeExit
        * - @param _exitProperty A property which is instance of exit predicate and its inputs are range and StateUpdate that exiting account wants to withdraw.
@@ -549,11 +551,11 @@ declare module '@polkadot/api/types/submittable' {
        * Please alse see https://docs.plasma.group/projects/spec/en/latest/src/02-contracts/deposit-contract.html#finalizeexit
        * TODO: weight
        **/
-      finalizeExit: AugmentedSubmittable<(plappsId: AccountId | string | Uint8Array, exitProperty: PropertyOf | null, depositedRangeId: BalanceOf | AnyNumber | Uint8Array, owner: AccountId | string | Uint8Array) => SubmittableExtrinsic<ApiType>>;
+      finalizeExit: AugmentedSubmittable<(plappsId: AccountId | string | Uint8Array, exitProperty: PropertyOf | { predicateAddress?: any; inputs?: any } | string | Uint8Array, depositedRangeId: BalanceOf | AnyNumber | Uint8Array, owner: AccountId | string | Uint8Array) => SubmittableExtrinsic<ApiType>>;
       /**
        * TODO: weight, not external
        **/
-      removeDepositedRange: AugmentedSubmittable<(plappsId: AccountId | string | Uint8Array, range: RangeOf | null, depositedRangeId: BalanceOf | AnyNumber | Uint8Array) => SubmittableExtrinsic<ApiType>>;
+      removeDepositedRange: AugmentedSubmittable<(plappsId: AccountId | string | Uint8Array, range: RangeOf | { start?: any; end?: any } | string | Uint8Array, depositedRangeId: BalanceOf | AnyNumber | Uint8Array) => SubmittableExtrinsic<ApiType>>;
       /**
        * Submit root hash of Plasma chain.
        * TODO: weight

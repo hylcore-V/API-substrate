@@ -15,7 +15,9 @@ import { ActiveEraInfo, EraIndex, Forcing, Nominations, RewardDestination, Staki
 import { AccountInfo, DigestOf, EventIndex, EventRecord, LastRuntimeUpgradeInfo, Phase } from '@polkadot/types/interfaces/system';
 import { Multiplier } from '@polkadot/types/interfaces/txpayment';
 import { EraStakingPoints, Parameters, StakingParameters } from 'plasm-types/interfaces/dappsStaking';
+import { ChallengeGameOf, PredicateContractOf, PredicateHash, PrefabOvmModule } from 'plasm-types/interfaces/ovm';
 import { AuthorityVote, Claim, ClaimId, DollarRate } from 'plasm-types/interfaces/plasmLockdrop';
+import { RangeOf } from 'plasm-types/interfaces/plasma';
 import { OfferOf } from 'plasm-types/interfaces/trading';
 import { ApiTypes } from '@polkadot/api/types';
 
@@ -263,11 +265,11 @@ declare module '@polkadot/api/types/storage' {
       /**
        * A mapping between an original code hash and instrumented ovm(predicate) code, ready for execution.
        **/
-      predicateCache: AugmentedQuery<ApiType, (arg: PredicateHash | null) => Observable<Option<PrefabOvmModule>>>;
+      predicateCache: AugmentedQuery<ApiType, (arg: PredicateHash | string | Uint8Array) => Observable<Option<PrefabOvmModule>>>;
       /**
        * A mapping from an original code hash to the original code, untouched by instrumentation.
        **/
-      predicateCodes: AugmentedQuery<ApiType, (arg: PredicateHash | null) => Observable<Option<Bytes>>>;
+      predicateCodes: AugmentedQuery<ApiType, (arg: PredicateHash | string | Uint8Array) => Observable<Option<Bytes>>>;
       /**
        * Mapping the predicate address to Predicate.
        * Predicate is handled similar to contracts.
