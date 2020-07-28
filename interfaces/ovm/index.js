@@ -12,9 +12,4 @@ var __exportStar = (this && this.__exportStar) || function(m, exports) {
     for (var p in m) if (p !== "default" && !exports.hasOwnProperty(p)) __createBinding(exports, m, p);
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-__exportStar(require("./plasmLockdrop/types"), exports);
-__exportStar(require("./dappsStaking/types"), exports);
-__exportStar(require("./plasmRewards/types"), exports);
-__exportStar(require("./trading/types"), exports);
-__exportStar(require("./ovm/types"), exports);
-__exportStar(require("./plasma/types"), exports);
+__exportStar(require("./types"), exports);

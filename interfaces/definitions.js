@@ -8,3 +8,7 @@ var definitions_3 = require("./plasmRewards/definitions");
 Object.defineProperty(exports, "plasmRewards", { enumerable: true, get: function () { return definitions_3.default; } });
 var definitions_4 = require("./trading/definitions");
 Object.defineProperty(exports, "trading", { enumerable: true, get: function () { return definitions_4.default; } });
+var definitions_5 = require("./ovm/definitions");
+Object.defineProperty(exports, "ovm", { enumerable: true, get: function () { return definitions_5.default; } });
+var definitions_6 = require("./plasma/definitions");
+Object.defineProperty(exports, "plasma", { enumerable: true, get: function () { return definitions_6.default; } });

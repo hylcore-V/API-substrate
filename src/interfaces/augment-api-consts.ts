@@ -3,7 +3,7 @@
 
 import { Vec } from '@polkadot/types/codec';
 import { u32, u64 } from '@polkadot/types/primitive';
-import { Balance, BalanceOf, BlockNumber, Moment, RuntimeDbWeight, Weight } from '@polkadot/types/interfaces/runtime';
+import { AccountId, Balance, BalanceOf, BlockNumber, Moment, RuntimeDbWeight, Weight } from '@polkadot/types/interfaces/runtime';
 import { SessionIndex } from '@polkadot/types/interfaces/session';
 import { WeightToFeeCoefficient } from '@polkadot/types/interfaces/support';
 
@@ -89,6 +89,16 @@ declare module '@polkadot/metadata/Decorated/consts/types' {
        * The number of recent samples to keep from this chain. Default is 101.
        **/
       windowSize: AugmentedConst<BlockNumber>;
+    };
+    ovm: {
+      /**
+       * During the dispute period defined here, the user can challenge.
+       * If nothing is found, the state is determined after the dispute period.
+       **/
+      disputePeriod: AugmentedConst<BlockNumber>;
+    };
+    plasma: {
+      maximumTokenAddress: AugmentedConst<AccountId>;
     };
     plasmRewards: {
       /**
