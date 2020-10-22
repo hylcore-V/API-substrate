@@ -1,7 +1,7 @@
 import { Struct, Vec } from '@polkadot/types/codec';
 import { u128 } from '@polkadot/types/primitive';
+import { Property } from '@plasm/types/interfaces/ovm';
 import { AccountId, Balance, BlockNumber, Hash } from '@polkadot/types/interfaces/runtime';
-import { Property } from 'plasm-types/interfaces/ovm';
 /** @name AddressInclusionProof */
 export interface AddressInclusionProof extends Struct {
     readonly leafIndex: AccountId;

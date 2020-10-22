@@ -17,6 +17,10 @@ declare const _default: {
             total: string;
             individual: string;
         };
+        VoteCounts: {
+            bad: string;
+            good: string;
+        };
     };
 };
 export default _default;

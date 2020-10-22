@@ -1,24 +1,40 @@
 import { AnyNumber, ITuple, Observable } from '@polkadot/types/types';
 import { Option, Vec } from '@polkadot/types/codec';
 import { Bytes, bool, u32, u64 } from '@polkadot/types/primitive';
+import { EraStakingPoints, Parameters, StakingParameters, VoteCounts } from '@plasm/types/interfaces/dappsStaking';
+import { Receipt, Transaction, TransactionStatus } from '@plasm/types/interfaces/ethereum';
+import { ChallengeGameOf, PredicateContractOf, PredicateHash, PrefabOvmModule } from '@plasm/types/interfaces/ovm';
+import { AuthorityVote, Claim, ClaimId, DollarRate } from '@plasm/types/interfaces/plasmLockdrop';
+import { RangeOf } from '@plasm/types/interfaces/plasma';
+import { OfferOf } from '@plasm/types/interfaces/trading';
+import { UncleEntryItem } from '@polkadot/types/interfaces/authorship';
 import { BabeAuthorityWeight, MaybeRandomness, NextConfigDescriptor, Randomness } from '@polkadot/types/interfaces/babe';
 import { AccountData, BalanceLock } from '@polkadot/types/interfaces/balances';
 import { AuthorityId } from '@polkadot/types/interfaces/consensus';
 import { CodeHash, ContractInfo, PrefabWasmModule, Schedule } from '@polkadot/types/interfaces/contracts';
 import { SetId, StoredPendingChange, StoredState } from '@polkadot/types/interfaces/grandpa';
-import { AccountId, AccountIndex, Balance, BalanceOf, BlockNumber, ExtrinsicsWeight, Hash, KeyTypeId, Moment, Perbill, Releases, ValidatorId } from '@polkadot/types/interfaces/runtime';
+import { AccountId, AccountIndex, Balance, BalanceOf, Block, BlockNumber, ExtrinsicsWeight, H160, H256, Hash, KeyTypeId, Moment, Perbill, Releases, ValidatorId } from '@polkadot/types/interfaces/runtime';
 import { Keys, SessionIndex } from '@polkadot/types/interfaces/session';
 import { ActiveEraInfo, EraIndex, Forcing, Nominations, RewardDestination, StakingLedger } from '@polkadot/types/interfaces/staking';
 import { AccountInfo, DigestOf, EventIndex, EventRecord, LastRuntimeUpgradeInfo, Phase } from '@polkadot/types/interfaces/system';
 import { Multiplier } from '@polkadot/types/interfaces/txpayment';
-import { EraStakingPoints, Parameters, StakingParameters } from 'plasm-types/interfaces/dappsStaking';
-import { ChallengeGameOf, PredicateContractOf, PredicateHash, PrefabOvmModule } from 'plasm-types/interfaces/ovm';
-import { AuthorityVote, Claim, ClaimId, DollarRate } from 'plasm-types/interfaces/plasmLockdrop';
-import { RangeOf } from 'plasm-types/interfaces/plasma';
-import { OfferOf } from 'plasm-types/interfaces/trading';
 import { ApiTypes } from '@polkadot/api/types';
 declare module '@polkadot/api/types/storage' {
     interface AugmentedQueries<ApiType> {
+        authorship: {
+            /**
+             * Author of current block.
+             **/
+            author: AugmentedQuery<ApiType, () => Observable<Option<AccountId>>>;
+            /**
+             * Whether uncles were already set in this block.
+             **/
+            didSetUncles: AugmentedQuery<ApiType, () => Observable<bool>>;
+            /**
+             * Uncles
+             **/
+            uncles: AugmentedQuery<ApiType, () => Observable<Vec<UncleEntryItem>>>;
+        };
         babe: {
             /**
              * Current epoch authorities.
@@ -137,10 +153,15 @@ declare module '@polkadot/api/types/storage' {
         };
         dappsStaking: {
             /**
+             * Votes for pairs of an account and a contract
+             **/
+            accountsVote: AugmentedQueryDoubleMap<ApiType, (key1: AccountId | string | Uint8Array, key2: AccountId | string | Uint8Array) => Observable<VoteCounts>>;
+            /**
              * Map from all locked "stash" accounts to the controller account.
              **/
             bonded: AugmentedQuery<ApiType, (arg: AccountId | string | Uint8Array) => Observable<Option<AccountId>>>;
             contractsUntreatedEra: AugmentedQuery<ApiType, (arg: AccountId | string | Uint8Array) => Observable<EraIndex>>;
+            contractVotesUntreatedEra: AugmentedQuery<ApiType, (arg: AccountId | string | Uint8Array) => Observable<EraIndex>>;
             /**
              * The map from nominator stash key to the set of stash keys of all contracts to nominate.
              *
@@ -161,10 +182,6 @@ declare module '@polkadot/api/types/storage' {
              **/
             erasNominateTotals: AugmentedQueryDoubleMap<ApiType, (key1: EraIndex | AnyNumber | Uint8Array, key2: AccountId | string | Uint8Array) => Observable<BalanceOf>>;
             /**
-             * The total amounts of staking for each operators
-             **/
-            erasStakedOperators: AugmentedQueryDoubleMap<ApiType, (key1: EraIndex | AnyNumber | Uint8Array, key2: AccountId | string | Uint8Array) => Observable<BalanceOf>>;
-            /**
              * Rewards of stakers for contracts(called by "Dapps Nominator") at era.
              *
              * This is keyed first by the era index, 2nd keyed contract account to allow the stash account.
@@ -179,11 +196,14 @@ declare module '@polkadot/api/types/storage' {
              **/
             erasTotalStake: AugmentedQuery<ApiType, (arg: EraIndex | AnyNumber | Uint8Array) => Observable<BalanceOf>>;
             /**
+             * Votes for pairs of an era and a contract
+             **/
+            erasVotes: AugmentedQueryDoubleMap<ApiType, (key1: EraIndex | AnyNumber | Uint8Array, key2: AccountId | string | Uint8Array) => Observable<VoteCounts>>;
+            /**
              * Map from all (unlocked) "controller" accounts to the info regarding the staking.
              **/
             ledger: AugmentedQuery<ApiType, (arg: AccountId | string | Uint8Array) => Observable<Option<StakingLedger>>>;
             nominatorsUntreatedEra: AugmentedQuery<ApiType, (arg: AccountId | string | Uint8Array) => Observable<EraIndex>>;
-            operatorsUntreatedEra: AugmentedQuery<ApiType, (arg: AccountId | string | Uint8Array) => Observable<EraIndex>>;
             /**
              * Where the reward payment should be made. Keyed by stash.
              **/
@@ -195,9 +215,35 @@ declare module '@polkadot/api/types/storage' {
              **/
             storageVersion: AugmentedQuery<ApiType, () => Observable<Releases>>;
             /**
+             * The total amounts of staking for pairs of nominator and contract
+             **/
+            totalStakes: AugmentedQueryDoubleMap<ApiType, (key1: AccountId | string | Uint8Array, key2: AccountId | string | Uint8Array) => Observable<BalanceOf>>;
+            /**
              * The already untreated era is EraIndex.
              **/
             untreatedEra: AugmentedQuery<ApiType, () => Observable<EraIndex>>;
+        };
+        ethereum: {
+            /**
+             * The current Ethereum block.
+             **/
+            currentBlock: AugmentedQuery<ApiType, () => Observable<Option<Block>>>;
+            /**
+             * The current Ethereum receipts.
+             **/
+            currentReceipts: AugmentedQuery<ApiType, () => Observable<Option<Vec<Receipt>>>>;
+            /**
+             * The current transaction statuses.
+             **/
+            currentTransactionStatuses: AugmentedQuery<ApiType, () => Observable<Option<Vec<TransactionStatus>>>>;
+            /**
+             * Current building block's transactions and receipts.
+             **/
+            pending: AugmentedQuery<ApiType, () => Observable<Vec<ITuple<[Transaction, TransactionStatus, Receipt]>>>>;
+        };
+        evm: {
+            accountCodes: AugmentedQuery<ApiType, (arg: H160 | string | Uint8Array) => Observable<Bytes>>;
+            accountStorages: AugmentedQueryDoubleMap<ApiType, (key1: H160 | string | Uint8Array, key2: H256 | string | Uint8Array) => Observable<H256>>;
         };
         grandpa: {
             /**
@@ -234,6 +280,12 @@ declare module '@polkadot/api/types/storage' {
              * The lookup from index to account.
              **/
             accounts: AugmentedQuery<ApiType, (arg: AccountIndex | AnyNumber | Uint8Array) => Observable<Option<ITuple<[AccountId, BalanceOf, bool]>>>>;
+        };
+        nicks: {
+            /**
+             * The lookup table for names.
+             **/
+            nameOf: AugmentedQuery<ApiType, (arg: AccountId | string | Uint8Array) => Observable<Option<ITuple<[Bytes, BalanceOf]>>>>;
         };
         operator: {
             /**
@@ -553,6 +605,10 @@ declare module '@polkadot/api/types/storage' {
              * Hash of the previous block.
              **/
             parentHash: AugmentedQuery<ApiType, () => Observable<Hash>>;
+            /**
+             * True if we have upgraded so that `type RefCount` is `u32`. False (default) if not.
+             **/
+            upgradedToU32RefCount: AugmentedQuery<ApiType, () => Observable<bool>>;
         };
         timestamp: {
             /**

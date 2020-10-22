@@ -30,4 +30,10 @@ export interface StakingParameters extends Struct {
   readonly optionP: u32;
 }
 
+/** @name VoteCounts */
+export interface VoteCounts extends Struct {
+  readonly bad: u32;
+  readonly good: u32;
+}
+
 export type PHANTOM_DAPPSSTAKING = 'dappsStaking';

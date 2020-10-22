@@ -6,15 +6,16 @@ import { u32, u64 } from '@polkadot/types/primitive';
 import { AccountId, Balance, BalanceOf, BlockNumber, Moment, RuntimeDbWeight, Weight } from '@polkadot/types/interfaces/runtime';
 import { SessionIndex } from '@polkadot/types/interfaces/session';
 import { WeightToFeeCoefficient } from '@polkadot/types/interfaces/support';
+import { ApiTypes } from '@polkadot/api/types';
 
-declare module '@polkadot/metadata/Decorated/consts/types' {
-  export interface Constants {
+declare module '@polkadot/api/types/consts' {
+  export interface AugmentedConsts<ApiType> {
     babe: {
       /**
        * The number of **slots** that an epoch takes. We couple sessions to
        * epochs, i.e. we start a new session once the new epoch begins.
        **/
-      epochDuration: AugmentedConst<u64>;
+      epochDuration: u64 & AugmentedConst<ApiType>;
       /**
        * The expected average block time at which BABE should be creating
        * blocks. Since BABE is probabilistic it is not trivial to figure out
@@ -22,28 +23,28 @@ declare module '@polkadot/metadata/Decorated/consts/types' {
        * duration and the security parameter `c` (where `1 - c` represents
        * the probability of a slot being empty).
        **/
-      expectedBlockTime: AugmentedConst<Moment>;
+      expectedBlockTime: Moment & AugmentedConst<ApiType>;
     };
     balances: {
       /**
        * The minimum amount required to keep an account open.
        **/
-      existentialDeposit: AugmentedConst<Balance>;
+      existentialDeposit: Balance & AugmentedConst<ApiType>;
     };
     contracts: {
       /**
        * The maximum nesting level of a call/instantiate stack. A reasonable default
        * value is 100.
        **/
-      maxDepth: AugmentedConst<u32>;
+      maxDepth: u32 & AugmentedConst<ApiType>;
       /**
        * The maximum size of a storage value in bytes. A reasonable default is 16 KiB.
        **/
-      maxValueSize: AugmentedConst<u32>;
+      maxValueSize: u32 & AugmentedConst<ApiType>;
       /**
        * Price of a byte of storage per one block interval. Should be greater than 0.
        **/
-      rentByteFee: AugmentedConst<BalanceOf>;
+      rentByteFee: BalanceOf & AugmentedConst<ApiType>;
       /**
        * The amount of funds a contract should deposit in order to offset
        * the cost of one byte.
@@ -53,14 +54,14 @@ declare module '@polkadot/metadata/Decorated/consts/types' {
        * But if the balance reduced to 500,000 BU and the storage stayed the same at 1,000,
        * then it would pay 500 BU/day.
        **/
-      rentDepositOffset: AugmentedConst<BalanceOf>;
+      rentDepositOffset: BalanceOf & AugmentedConst<ApiType>;
       /**
        * Number of block delay an extrinsic claim surcharge has.
        * 
        * When claim surcharge is called by an extrinsic the rent is checked
        * for current_block - delay
        **/
-      signedClaimHandicap: AugmentedConst<BlockNumber>;
+      signedClaimHandicap: BlockNumber & AugmentedConst<ApiType>;
       /**
        * A size offset for an contract. A just created account with untouched storage will have that
        * much of storage from the perspective of the state rent.
@@ -69,68 +70,88 @@ declare module '@polkadot/metadata/Decorated/consts/types' {
        * by making them pay rent. This creates an incentive to remove them early in order to save
        * rent.
        **/
-      storageSizeOffset: AugmentedConst<u32>;
+      storageSizeOffset: u32 & AugmentedConst<ApiType>;
       /**
        * Reward that is received by the party whose touch has led
        * to removal of a contract.
        **/
-      surchargeReward: AugmentedConst<BalanceOf>;
+      surchargeReward: BalanceOf & AugmentedConst<ApiType>;
       /**
        * The minimum amount required to generate a tombstone.
        **/
-      tombstoneDeposit: AugmentedConst<BalanceOf>;
+      tombstoneDeposit: BalanceOf & AugmentedConst<ApiType>;
     };
     finalityTracker: {
       /**
        * The delay after which point things become suspicious. Default is 1000.
        **/
-      reportLatency: AugmentedConst<BlockNumber>;
+      reportLatency: BlockNumber & AugmentedConst<ApiType>;
       /**
        * The number of recent samples to keep from this chain. Default is 101.
        **/
-      windowSize: AugmentedConst<BlockNumber>;
+      windowSize: BlockNumber & AugmentedConst<ApiType>;
+    };
+    indices: {
+      /**
+       * The deposit needed for reserving an index.
+       **/
+      deposit: BalanceOf & AugmentedConst<ApiType>;
+    };
+    nicks: {
+      /**
+       * The maximum length a name may be.
+       **/
+      maxLength: u32 & AugmentedConst<ApiType>;
+      /**
+       * The minimum length a name may be.
+       **/
+      minLength: u32 & AugmentedConst<ApiType>;
+      /**
+       * Reservation fee.
+       **/
+      reservationFee: BalanceOf & AugmentedConst<ApiType>;
     };
     ovm: {
       /**
        * During the dispute period defined here, the user can challenge.
        * If nothing is found, the state is determined after the dispute period.
        **/
-      disputePeriod: AugmentedConst<BlockNumber>;
+      disputePeriod: BlockNumber & AugmentedConst<ApiType>;
     };
     plasma: {
-      maximumTokenAddress: AugmentedConst<AccountId>;
+      maximumTokenAddress: AccountId & AugmentedConst<ApiType>;
     };
     plasmRewards: {
       /**
        * Number of sessions per era.
        **/
-      sessionsPerEra: AugmentedConst<SessionIndex>;
+      sessionsPerEra: SessionIndex & AugmentedConst<ApiType>;
     };
     system: {
       /**
        * The base weight of executing a block, independent of the transactions in the block.
        **/
-      blockExecutionWeight: AugmentedConst<Weight>;
+      blockExecutionWeight: Weight & AugmentedConst<ApiType>;
       /**
        * The maximum number of blocks to allow in mortal eras.
        **/
-      blockHashCount: AugmentedConst<BlockNumber>;
+      blockHashCount: BlockNumber & AugmentedConst<ApiType>;
       /**
        * The weight of runtime database operations the runtime can invoke.
        **/
-      dbWeight: AugmentedConst<RuntimeDbWeight>;
+      dbWeight: RuntimeDbWeight & AugmentedConst<ApiType>;
       /**
        * The base weight of an Extrinsic in the block, independent of the of extrinsic being executed.
        **/
-      extrinsicBaseWeight: AugmentedConst<Weight>;
+      extrinsicBaseWeight: Weight & AugmentedConst<ApiType>;
       /**
        * The maximum length of a block (in bytes).
        **/
-      maximumBlockLength: AugmentedConst<u32>;
+      maximumBlockLength: u32 & AugmentedConst<ApiType>;
       /**
        * The maximum weight of a block.
        **/
-      maximumBlockWeight: AugmentedConst<Weight>;
+      maximumBlockWeight: Weight & AugmentedConst<ApiType>;
     };
     timestamp: {
       /**
@@ -139,17 +160,20 @@ declare module '@polkadot/metadata/Decorated/consts/types' {
        * work with this to determine a sensible block time. e.g. For Aura, it will be double this
        * period on default settings.
        **/
-      minimumPeriod: AugmentedConst<Moment>;
+      minimumPeriod: Moment & AugmentedConst<ApiType>;
     };
     transactionPayment: {
       /**
        * The fee to be paid for making a transaction; the per-byte portion.
        **/
-      transactionByteFee: AugmentedConst<BalanceOf>;
+      transactionByteFee: BalanceOf & AugmentedConst<ApiType>;
       /**
        * The polynomial that is applied in order to derive fee from weight.
        **/
-      weightToFee: AugmentedConst<Vec<WeightToFeeCoefficient>>;
+      weightToFee: Vec<WeightToFeeCoefficient> & AugmentedConst<ApiType>;
     };
+  }
+
+  export interface QueryableConsts<ApiType extends ApiTypes> extends AugmentedConsts<ApiType> {
   }
 }

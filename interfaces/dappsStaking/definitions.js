@@ -20,5 +20,9 @@ exports.default = {
             total: 'Balance',
             individual: 'BTreeMap<AccountId, Balance>',
         },
+        VoteCounts: {
+            bad: 'u32',
+            good: 'u32',
+        },
     },
 };
