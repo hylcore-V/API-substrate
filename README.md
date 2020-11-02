@@ -1,5 +1,9 @@
 # Plasm Network node types
 
+[![NPM](https://nodei.co/npm/@plasm/types.png?downloads=true)](https://www.npmjs.com/package/@plasm/types)
+
+[![GitHub license](https://img.shields.io/github/license/staketechnologies/plasm-types.svg)](https://github.com/staketechnologies/plasm-types/blob/main/LICENSE)
+
 This is a substrate type definitions made with [@polkadot-js/typegen](https://www.npmjs.com/package/@polkadot/typegen).
 It is meant for developers working with TypeScript to interact with the plasm node.
 This package is meant to be used with the [@polakdot-js/api](https://github.com/polkadot-js/api) library.
