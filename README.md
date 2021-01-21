@@ -2,10 +2,10 @@
 
 [![NPM](https://nodei.co/npm/@plasm/types.png?downloads=true)](https://www.npmjs.com/package/@plasm/types)
 
-[![GitHub license](https://img.shields.io/github/license/staketechnologies/plasm-types.svg)](https://github.com/staketechnologies/plasm-types/blob/main/LICENSE)
+[![GitHub license](https://img.shields.io/github/license/PlasmNetwork/plasm-types.svg)](https://github.com/staketechnologies/plasm-types/blob/main/LICENSE)
 
 This is a substrate type definitions made with [@polkadot-js/typegen](https://www.npmjs.com/package/@polkadot/typegen).
-It is meant for developers working with TypeScript to interact with the plasm node.
+It is meant for developers working with TypeScript to interact with the Plasm node.
 This package is meant to be used with the [@polakdot-js/api](https://github.com/polkadot-js/api) library.
 
 ## Usage
@@ -38,11 +38,11 @@ It should be in the following format:
 ```typescript
 export default {
     types: {
-        TypeA: 'H256',
-        StructB: {
+        StructA: {
             id: 'u8',
             value_hash: 'H256',
-        }
+        },
+        TypeA: 'H256',
         ...
     },
 };
@@ -64,4 +64,3 @@ $ yarn lint
 If everything worked well, you can see the `src/interfaces/` folder being populated with new definitions files.
 
 Currently, the build script uses `wss://rpc.dusty.plasmnet.io` as the endpoint for fetching chain metadata.
-

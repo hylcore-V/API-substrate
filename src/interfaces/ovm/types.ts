@@ -1,9 +1,8 @@
 // Auto-generated via `yarn polkadot-types-from-defs`, do not edit
 /* eslint-disable */
 
-import { Enum, Struct, Vec } from '@polkadot/types/codec';
-import { Bytes, u32 } from '@polkadot/types/primitive';
-import { AccountId, BlockNumber, Hash, Weight } from '@polkadot/types/interfaces/runtime';
+import type { Bytes, Enum, Struct, Vec, u32 } from '@polkadot/types';
+import type { AccountId, BlockNumber, Hash, Weight } from '@polkadot/types/interfaces/runtime';
 
 /** @name ChallengeGameOf */
 export interface ChallengeGameOf extends Struct {

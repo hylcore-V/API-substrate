@@ -1,5 +1,5 @@
-import { Enum, Struct, Vec } from '@polkadot/types/codec';
-import { AccountId, Balance, BlockNumber } from '@polkadot/types/interfaces/runtime';
+import type { Enum, Struct, Vec } from '@polkadot/types';
+import type { AccountId, Balance, BlockNumber } from '@polkadot/types/interfaces/runtime';
 /** @name OfferOf */
 export interface OfferOf extends Struct {
     readonly buyer: AccountId;

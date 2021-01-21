@@ -1,9 +1,8 @@
-import { Vec } from '@polkadot/types/codec';
-import { u32, u64 } from '@polkadot/types/primitive';
-import { AccountId, Balance, BalanceOf, BlockNumber, Moment, RuntimeDbWeight, Weight } from '@polkadot/types/interfaces/runtime';
-import { SessionIndex } from '@polkadot/types/interfaces/session';
-import { WeightToFeeCoefficient } from '@polkadot/types/interfaces/support';
-import { ApiTypes } from '@polkadot/api/types';
+import type { Vec, u32, u64 } from '@polkadot/types';
+import type { AccountId, Balance, BalanceOf, BlockNumber, Moment, RuntimeDbWeight, Weight } from '@polkadot/types/interfaces/runtime';
+import type { SessionIndex } from '@polkadot/types/interfaces/session';
+import type { WeightToFeeCoefficient } from '@polkadot/types/interfaces/support';
+import type { ApiTypes } from '@polkadot/api/types';
 declare module '@polkadot/api/types/consts' {
     interface AugmentedConsts<ApiType> {
         babe: {

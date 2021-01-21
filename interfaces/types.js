@@ -18,4 +18,3 @@ __exportStar(require("./plasmRewards/types"), exports);
 __exportStar(require("./trading/types"), exports);
 __exportStar(require("./ovm/types"), exports);
 __exportStar(require("./plasma/types"), exports);
-__exportStar(require("./ethereum/types"), exports);

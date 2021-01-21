@@ -1,4 +1,4 @@
-import { u32 } from '@polkadot/types/primitive';
+import type { u32 } from '@polkadot/types';
 /** @name EraIndex */
 export interface EraIndex extends u32 {
 }

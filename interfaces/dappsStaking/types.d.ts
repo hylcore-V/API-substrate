@@ -1,6 +1,5 @@
-import { BTreeMap, Enum, Struct } from '@polkadot/types/codec';
-import { bool, u128, u32 } from '@polkadot/types/primitive';
-import { AccountId, Balance } from '@polkadot/types/interfaces/runtime';
+import type { BTreeMap, Enum, Struct, bool, u128, u32 } from '@polkadot/types';
+import type { AccountId, Balance } from '@polkadot/types/interfaces/runtime';
 /** @name EraStakingPoints */
 export interface EraStakingPoints extends Struct {
     readonly total: Balance;

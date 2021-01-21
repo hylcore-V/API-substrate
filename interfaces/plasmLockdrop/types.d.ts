@@ -1,6 +1,5 @@
-import { BTreeSet, Struct, U8aFixed } from '@polkadot/types/codec';
-import { bool, u128, u16, u32, u64, u8 } from '@polkadot/types/primitive';
-import { AccountId, H256 } from '@polkadot/types/interfaces/runtime';
+import type { BTreeSet, Struct, U8aFixed, bool, u128, u16, u32, u64, u8 } from '@polkadot/types';
+import type { AccountId, H256 } from '@polkadot/types/interfaces/runtime';
 /** @name AuthorityId */
 export interface AuthorityId extends AccountId {
 }
