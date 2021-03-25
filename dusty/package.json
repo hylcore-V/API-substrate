@@ -1,5 +1,5 @@
 {
-    "name": "@plasm/types",
+    "name": "@plasm/types-dusty",
     "version": "1.5.0",
     "description": "Plasm Network node type definitions generated with @polkadot/typegen",
     "main": "index.js",
@@ -7,9 +7,7 @@
         "ES2018"
     ],
     "files": [
-        "dusty/interfaces/",
-        "main/interfaces/",
-        "README.md"
+        "interfaces/"
     ],
     "repository": {
         "type": "git",
@@ -18,8 +16,9 @@
     "author": "Stake Technologies <devops@stake.co.jp>",
     "license": "MIT",
     "scripts": {
-        "install" :  "yarn --cwd main install && yarn --cwd dusty install",
-        "build": "yarn --cwd main build && yarn --cwd dusty build",
+        "build": "yarn generate:defs && yarn generate:meta && tsc",
+        "generate:defs": "ts-node --skip-project node_modules/.bin/polkadot-types-from-defs --package @plasm/types-dusty/interfaces --input ./src/interfaces",
+        "generate:meta": "ts-node --skip-project node_modules/.bin/polkadot-types-from-chain --package @plasm/types-dusty/interfaces --endpoint wss://rpc.dusty.plasmnet.io --output ./src/interfaces --strict",
         "lint": "tsc --noEmit --pretty"
     },
     "dependencies": {
