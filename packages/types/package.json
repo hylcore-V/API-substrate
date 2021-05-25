@@ -1,0 +1,57 @@
+{
+    "name": "@plasm/types",
+    "version": "1.5.0",
+    "description": "Plasm Network node type definitions generated with @polkadot/typegen",
+    "type": "commonjs",
+    "keywords": [
+        "plasm",
+        "typescript",
+        "polkadot",
+        "blockchain",
+        "substrate",
+        "types"
+    ],
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/PlasmNetwork/plasm-types.git"
+    },
+    "author": "Stake Technologies <devops@stake.co.jp>",
+    "license": "MIT",
+    "bugs": {
+        "url": "https://github.com/PlasmNetwork/plasm-types/issues"
+    },
+    "homepage": "https://github.com/PlasmNetwork/plasm-types#readme",
+    "main": "index.js",
+    "types": "index.d.ts",
+    "files": [
+        "dist"
+    ],
+    "scripts": {
+        "fetch:types": "ts-node --project tsconfig.script.json -r tsconfig-paths/register scripts/build.ts",
+        "build": "yarn run clean && yarn run build:lib",
+        "clean": "rimraf dist",
+        "build:lib": "tsc --project tsconfig.json",
+        "build:types": "yarn run generate:defs && yarn run generate:meta",
+        "generate:defs": "ts-node --skip-project node_modules/.bin/polkadot-types-from-defs --package @plasm/types/interfaces --input ./src/interfaces",
+        "generate:meta": "ts-node --skip-project node_modules/.bin/polkadot-types-from-chain --package @plasm/types/interfaces --endpoint ws://localhost:9944 --output ./src/interfaces",
+        "lint": "eslint 'src/**/*.ts'",
+        "lint:fix": "eslint --fix 'src/**/*.ts'",
+        "test": "NODE_ENV=test jest && yarn run lint"
+    },
+    "dependencies": {
+        "@polkadot/api": "^4.10.1",
+        "cross-env": "7.0.3"
+    },
+    "devDependencies": {
+        "@polkadot/typegen": "^4.10.1",
+        "@types/jest": "^26.0.23",
+        "jest": "^26.6.3",
+        "jest-config": "^26.6.3",
+        "rimraf": "^3.0.2",
+        "ts-jest": "^26.5.6",
+        "ts-node": "^9.1.1",
+        "ts-node-dev": "^1.1.6",
+        "tsconfig-paths": "^3.9.0",
+        "typescript": "^4.2.4"
+    }
+}

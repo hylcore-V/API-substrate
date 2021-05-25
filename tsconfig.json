@@ -1,7 +1,13 @@
 {
-    "files": [],
-    "references": [
-      {"path": "./main"},
-      {"path": "./dusty"}
-    ]
-  }
+    "extends": "@polkadot/dev/config/tsconfig.json",
+    "compilerOptions": {
+        "composite": true,
+        "baseUrl": ".",
+        "skipLibCheck": true,
+        "resolveJsonModule": true,
+        "paths": {
+            "@plasm/*": ["packages/*/src"]
+        },
+        "typeRoots": ["./node_modules/@polkadot/ts", "./node_modules/@types"]
+    }
+}
