@@ -1,13 +1,15 @@
 {
     "lerna": "4.0.0",
     "packages": ["packages/*"],
-    "version": "fixed",
+    "version": "1.5.1",
     "npmClient": "yarn",
     "useWorkspaces": true,
     "publishConfig": {
         "directory": "dist",
         "access": "public",
-        "registry": "https://registry.npmjs.org"
+        "registry": "https://registry.npmjs.org",
+        "conventionalCommits": true,
+        "createRelease": "github"
     },
     "command": {
         "version": {

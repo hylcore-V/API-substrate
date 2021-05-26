@@ -29,7 +29,7 @@
         "test": "yarn workspaces run test",
         "lint": "yarn workspaces run lint",
         "postinstall": "lerna bootstrap",
-        "release": "lerna version -y --conventional-commits --create-release github",
+        "release": "lerna version -y",
         "clean": "lerna clean",
         "script:types": "yarn workspace @plasm/types"
     },
