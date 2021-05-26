@@ -18,7 +18,6 @@ jobs:
     - run: |
           git config --global user.email "devops@stake.co.jp" && git config --global user.name "CI Action"
           yarn
-          yarn build
           yarn release
           yarn run lerna publish --yes from-package
       env:

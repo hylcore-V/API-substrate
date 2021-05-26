@@ -31,7 +31,7 @@
         "build": "yarn run clean && yarn run build:lib",
         "test": "echo \"Unit test not implemented!\"",
         "clean": "rimraf dist",
-        "prepublishOnly": "yarn run test && yarn run lint && yarn run build",
+        "prepublish": "yarn run lint && yarn run build",
         "build:lib": "tsc --project tsconfig.json",
         "build:types": "yarn run generate:defs && yarn run generate:meta",
         "generate:defs": "ts-node --skip-project node_modules/.bin/polkadot-types-from-defs --package @plasm/types/interfaces --input ./src/interfaces",

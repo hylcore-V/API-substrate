@@ -1,20 +1,17 @@
 {
     "lerna": "4.0.0",
-    "packages": [
-        "packages/*"
-    ],
+    "packages": ["packages/*"],
     "version": "1.5.2",
     "npmClient": "yarn",
     "useWorkspaces": true,
     "publishConfig": {
-        "directory": "dist",
         "access": "public",
         "registry": "https://registry.npmjs.org"
     },
     "command": {
         "version": {
             "allowBranch": "master",
-            "message": "[CI] Bump Version",
+            "message": "[CI] Bump Version %s",
             "conventionalCommits": true,
             "createRelease": "github"
         }
