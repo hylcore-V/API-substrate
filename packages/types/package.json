@@ -29,6 +29,7 @@
     "scripts": {
         "fetch:types": "ts-node --project tsconfig.script.json -r tsconfig-paths/register scripts/readTypes.ts",
         "build": "yarn run clean && yarn run build:lib",
+        "test": "echo \"Unit test not implemented!\"",
         "clean": "rimraf dist",
         "prepublishOnly": "yarn run test && yarn run lint && yarn run build",
         "build:lib": "tsc --project tsconfig.json",

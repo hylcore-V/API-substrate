@@ -26,7 +26,7 @@
     },
     "scripts": {
         "build": "yarn workspaces run build",
-        "test": "echo \"Unit test not implemented!\"",
+        "test": "yarn workspaces run test",
         "lint": "yarn workspaces run lint",
         "postinstall": "lerna bootstrap",
         "release": "lerna version -y --conventional-commits --create-release github",
