@@ -1,6 +1,6 @@
 {
     "name": "@plasm/types",
-    "version": "1.5.2",
+    "version": "1.5.3",
     "description": "Plasm Network node type definitions generated with @polkadot/typegen",
     "type": "module",
     "keywords": [

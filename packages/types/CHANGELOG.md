@@ -5,12 +5,4 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 ## 1.5.3 (2021-05-26)
 
-**Note:** Version bump only for package root
-
-
-
-
-
-## 1.5.2 (2021-05-26)
-
-**Note:** Version bump only for package root
+**Note:** Version bump only for package @plasm/types
