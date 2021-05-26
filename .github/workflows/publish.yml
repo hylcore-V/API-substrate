@@ -16,6 +16,7 @@ jobs:
         # Defaults to the user or organization that owns the workflow file
         scope: '@plasm' 
     - run: |
+          git config --global user.email "devops@stake.co.jp" && git config --global user.name "Stake Technologies"
           yarn
           yarn build
           yarn release
@@ -23,5 +24,3 @@ jobs:
       env:
         NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
         GH_TOKEN: ${{ secrets.GH_TOKEN }}
-        GIT_AUTHOR_EMAIL: 'devops@stake.co.jp'
-        GIT_AUTHOR_NAME: 'Stake Technologies'
