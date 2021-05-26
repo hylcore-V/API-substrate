@@ -7,14 +7,14 @@
     "publishConfig": {
         "directory": "dist",
         "access": "public",
-        "registry": "https://registry.npmjs.org",
-        "conventionalCommits": true,
-        "createRelease": "github"
+        "registry": "https://registry.npmjs.org"
     },
     "command": {
         "version": {
             "allowBranch": "master",
-            "message": "[CI] Bump Version"
+            "message": "[CI] Bump Version",
+            "conventionalCommits": true,
+            "createRelease": "github"
         }
     }
 }
