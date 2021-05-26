@@ -1,17 +1,17 @@
 {
     "name": "root",
-    "version": "1.5.0",
+    "version": "0.0.1",
     "private": true,
     "repository": {
         "type": "git",
-        "url": "git+https://github.com/PlasmNetwork/plasm-types.git"
+        "url": "git+https://github.com/PlasmNetwork/api.git"
     },
     "author": "Stake Technologies <devops@stake.co.jp>",
     "license": "MIT",
     "bugs": {
-        "url": "https://github.com/PlasmNetwork/plasm-types/issues"
+        "url": "https://github.com/PlasmNetwork/api/issues"
     },
-    "homepage": "https://github.com/PlasmNetwork/plasm-types#readme",
+    "homepage": "https://github.com/PlasmNetwork/api#readme",
     "type": "module",
     "workspaces": [
         "packages/*"
@@ -26,9 +26,10 @@
     },
     "scripts": {
         "build": "yarn workspaces run build",
-        "test": "yarn workspaces run test",
+        "test": "echo \"Unit test not implemented!\"",
         "lint": "yarn workspaces run lint",
         "postinstall": "lerna bootstrap",
+        "release": "yarn workspaces run npm publish --access=public",
         "clean": "lerna clean",
         "script:types": "yarn workspace @plasm/types"
     },
@@ -42,7 +43,6 @@
         "eslint-plugin-prettier": "3.4.0",
         "eslint-plugin-promise": "^5.1.0",
         "prettier": "^2.3.0",
-        "lerna": "^4.0.0",
-        "typescript": "^4.2.4"
+        "lerna": "^4.0.0"
     }
 }

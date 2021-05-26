@@ -1,66 +1,10 @@
-# Plasm Network node types
+# Plasm Blockchain API
 
-[![NPM](https://nodei.co/npm/@plasm/types.png?downloads=true)](https://www.npmjs.com/package/@plasm/types)
+![cover](https://user-images.githubusercontent.com/6259384/72399615-0e1cbb80-378a-11ea-91af-c1dbdde345f5.png)
 
 [![GitHub license](https://img.shields.io/github/license/PlasmNetwork/plasm-types.svg)](https://github.com/staketechnologies/plasm-types/blob/main/LICENSE)
 
-This is a substrate type definitions made with [@polkadot-js/typegen](https://www.npmjs.com/package/@polkadot/typegen).
-It is meant for developers working with TypeScript to interact with the Plasm node.
-This package is meant to be used with the [@polakdot-js/api](https://github.com/polkadot-js/api) library.
+Plasm API is a collection of TypeScript packages that aims to support blockchain application developers using Plasm Network and Substrate.
 
-## Usage
-
-### Importing Types
-
-```ts
-... // API imports
-import * as plasmDefinitions from '@plasm/types/interfaces/definitions';
-
-const types = Object.values(plasmDefinitions).reduce((res, { types }): object => ({ ...res, ...types }), {});
-
-const networkEndpoint = 'ws://localhost:9944';
-
-const options: ApiOptions = {
-    provider: new WsProvider(networkEndpoint),
-    types: {
-        ...types,
-    },
-};
-
-const api = new ApiRx(options);
-```
-
-### Generating Types
-
-First, you'll have to manually define chain specific types for each pallets to the `interfaces/<module>/definitions.ts` file.
-It should be in the following format:
-
-```typescript
-export default {
-    types: {
-        StructA: {
-            id: 'u8',
-            value_hash: 'H256',
-        },
-        TypeA: 'H256',
-        ...
-    },
-};
-```
-
-Once that is done, you can simply run the following command to build the package.
-
-```bash
-# install dependencies
-$ yarn
-
-# generate type definitions and compile to JS
-$ yarn build
-
-# lint output
-$ yarn lint
-```
-
-If everything worked well, you can see the `src/interfaces/` folder being populated with new definitions files.
-
-Currently, the build script uses `wss://rpc.dusty.plasmnet.io` as the endpoint for fetching chain metadata.
+This repository is still under heavy development.
+At the moment, we only offer `@plasm/types` for client app development using `@polkadot/api`.

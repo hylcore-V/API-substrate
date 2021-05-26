@@ -5,9 +5,11 @@
         "baseUrl": ".",
         "skipLibCheck": true,
         "resolveJsonModule": true,
+        "pretty": true,
         "paths": {
             "@plasm/*": ["packages/*/src"]
         },
         "typeRoots": ["./node_modules/@polkadot/ts", "./node_modules/@types"]
-    }
+    },
+    "exclude": ["**/dist/**/*", "dist/**/*", "node_modules"]
 }

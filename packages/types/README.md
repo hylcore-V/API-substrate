@@ -1,8 +1,6 @@
-# Plasm Network node types
+# @plasm/types
 
 [![NPM](https://nodei.co/npm/@plasm/types.png?downloads=true)](https://www.npmjs.com/package/@plasm/types)
-
-[![GitHub license](https://img.shields.io/github/license/PlasmNetwork/plasm-types.svg)](https://github.com/staketechnologies/plasm-types/blob/main/LICENSE)
 
 This is a substrate type definitions made with [@polkadot-js/typegen](https://www.npmjs.com/package/@polkadot/typegen).
 It is meant for developers working with TypeScript to interact with the Plasm node.
@@ -12,30 +10,57 @@ This package is meant to be used with the [@polakdot-js/api](https://github.com/
 
 ### Importing Types
 
+You can use the `ApiOptions` interface to set the node configuration before initializing the Polkadot API instance.
+
 ```ts
-... // API imports
-import * as plasmDefinitions from '@plasm/types/interfaces/definitions';
+import { WsProvider, ApiPromise } from '@polkadot/api';
+import { ApiOptions } from '@polkadot/api/types';
+import { plasmDefinitions} from '@plasm/types';
 
-const types = Object.values(plasmDefinitions).reduce((res, { types }): object => ({ ...res, ...types }), {});
-
-const networkEndpoint = 'ws://localhost:9944';
-
+// using ApiOptions interface
 const options: ApiOptions = {
-    provider: new WsProvider(networkEndpoint),
+    provider: new WsProvider('ws://localhost:9944'),
     types: {
-        ...types,
+        ...plasmDefinitions,
     },
 };
 
 const api = new ApiRx(options);
 ```
 
+Or, you can pass the node types directly when initializing the API instance.
+
+```ts
+import { WsProvider, ApiPromise } from '@polkadot/api';
+import { plasmDefinitions} from '@plasm/types';
+
+// using the ApiPromise class
+const api = await ApiPromise.create({
+    provider: new WsProvider('ws://localhost:9944'),
+    types: {
+        ...plasmDefinitions,
+    }
+});
+
+await api.isReady;
+```
+
+Finally, you can register the types after the API instance has already been created.
+
+```ts
+import { plasmDefinitions} from '@plasm/types';
+
+// already initialized api instance
+await api.registerTypes(dustyDefinitions);
+```
+
 ### Generating Types
 
-First, you'll have to manually define chain specific types for each pallets to the `interfaces/<module>/definitions.ts` file.
-It should be in the following format:
+First, you'll have to manually define chain specific types for each pallets from the `src/interfaces/<module-name>/definitions.ts` file.
 
-```typescript
+The script should export an object that looks something like this:
+
+```ts
 export default {
     types: {
         StructA: {
@@ -47,20 +72,3 @@ export default {
     },
 };
 ```
-
-Once that is done, you can simply run the following command to build the package.
-
-```bash
-# install dependencies
-$ yarn
-
-# generate type definitions and compile to JS
-$ yarn build
-
-# lint output
-$ yarn lint
-```
-
-If everything worked well, you can see the `src/interfaces/` folder being populated with new definitions files.
-
-Currently, the build script uses `wss://rpc.dusty.plasmnet.io` as the endpoint for fetching chain metadata.

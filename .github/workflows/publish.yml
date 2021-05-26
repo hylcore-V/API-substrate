@@ -1,4 +1,4 @@
-name: Node.js Package
+name: Publish to NPM
 on:
   release:
     types: [created]
@@ -13,8 +13,8 @@ jobs:
         node-version: '16.x'
         registry-url: 'https://registry.npmjs.org'
         # Defaults to the user or organization that owns the workflow file
-        scope: '@octocat' 
+        scope: '@plasm' 
     - run: yarn
-    - run: yarn publish # todo: implement publishing behavior
+    - run: yarn release
       env:
         NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}

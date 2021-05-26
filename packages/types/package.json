@@ -1,8 +1,8 @@
 {
     "name": "@plasm/types",
-    "version": "1.5.0",
+    "version": "1.5.0-alpha",
     "description": "Plasm Network node type definitions generated with @polkadot/typegen",
-    "type": "commonjs",
+    "type": "module",
     "keywords": [
         "plasm",
         "typescript",
@@ -13,30 +13,30 @@
     ],
     "repository": {
         "type": "git",
-        "url": "git+https://github.com/PlasmNetwork/plasm-types.git"
+        "url": "git+https://github.com/PlasmNetwork/api.git"
     },
     "author": "Stake Technologies <devops@stake.co.jp>",
     "license": "MIT",
     "bugs": {
-        "url": "https://github.com/PlasmNetwork/plasm-types/issues"
+        "url": "https://github.com/PlasmNetwork/api/issues"
     },
-    "homepage": "https://github.com/PlasmNetwork/plasm-types#readme",
-    "main": "index.js",
-    "types": "index.d.ts",
+    "homepage": "https://github.com/PlasmNetwork/api/tree/master/packages/types#readme",
+    "main": "dist/index.js",
+    "types": "dist/index.d.ts",
     "files": [
         "dist"
     ],
     "scripts": {
-        "fetch:types": "ts-node --project tsconfig.script.json -r tsconfig-paths/register scripts/build.ts",
+        "fetch:types": "ts-node --project tsconfig.script.json -r tsconfig-paths/register scripts/readTypes.ts",
         "build": "yarn run clean && yarn run build:lib",
         "clean": "rimraf dist",
+        "prepublishOnly": "yarn run test && yarn run lint && yarn run build",
         "build:lib": "tsc --project tsconfig.json",
         "build:types": "yarn run generate:defs && yarn run generate:meta",
         "generate:defs": "ts-node --skip-project node_modules/.bin/polkadot-types-from-defs --package @plasm/types/interfaces --input ./src/interfaces",
         "generate:meta": "ts-node --skip-project node_modules/.bin/polkadot-types-from-chain --package @plasm/types/interfaces --endpoint ws://localhost:9944 --output ./src/interfaces",
         "lint": "eslint 'src/**/*.ts'",
-        "lint:fix": "eslint --fix 'src/**/*.ts'",
-        "test": "NODE_ENV=test jest && yarn run lint"
+        "lint:fix": "eslint --fix 'src/**/*.ts'"
     },
     "dependencies": {
         "@polkadot/api": "^4.10.1",
@@ -44,11 +44,7 @@
     },
     "devDependencies": {
         "@polkadot/typegen": "^4.10.1",
-        "@types/jest": "^26.0.23",
-        "jest": "^26.6.3",
-        "jest-config": "^26.6.3",
         "rimraf": "^3.0.2",
-        "ts-jest": "^26.5.6",
         "ts-node": "^9.1.1",
         "ts-node-dev": "^1.1.6",
         "tsconfig-paths": "^3.9.0",
