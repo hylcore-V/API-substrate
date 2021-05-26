@@ -1,7 +1,7 @@
 {
     "lerna": "4.0.0",
     "packages": ["packages/*"],
-    "version": "independent",
+    "version": "fixed",
     "npmClient": "yarn",
     "useWorkspaces": true,
     "publishConfig": {
