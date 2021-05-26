@@ -1,7 +1,8 @@
 name: Publish to NPM
 on:
-  release:
-    types: [created]
+  push:
+    branches:
+      - 'master'
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -14,7 +15,11 @@ jobs:
         registry-url: 'https://registry.npmjs.org'
         # Defaults to the user or organization that owns the workflow file
         scope: '@plasm' 
-    - run: yarn
-    - run: yarn release
+    - run: |
+          yarn
+          yarn build
+          yarn release
+          yarn run lerna publish -y from-package
       env:
         NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+        GH_TOKEN: ${{ secrets.GH_TOKEN }}

@@ -29,7 +29,7 @@
         "test": "echo \"Unit test not implemented!\"",
         "lint": "yarn workspaces run lint",
         "postinstall": "lerna bootstrap",
-        "release": "yarn workspaces run npm publish --access=public",
+        "release": "lerna version -y --conventional-commits --create-release github",
         "clean": "lerna clean",
         "script:types": "yarn workspace @plasm/types"
     },

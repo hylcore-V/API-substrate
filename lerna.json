@@ -3,5 +3,16 @@
     "packages": ["packages/*"],
     "version": "independent",
     "npmClient": "yarn",
-    "useWorkspaces": true
+    "useWorkspaces": true,
+    "publishConfig": {
+        "directory": "dist",
+        "access": "public",
+        "registry": "https://registry.npmjs.org"
+    },
+    "command": {
+        "version": {
+            "allowBranch": "master",
+            "message": "[release] package %s"
+        }
+    }
 }
