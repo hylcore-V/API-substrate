@@ -16,7 +16,7 @@ jobs:
         # Defaults to the user or organization that owns the workflow file
         scope: '@plasm' 
     - run: |
-          git config --global user.email "devops@stake.co.jp" && git config --global user.name "Stake Technologies"
+          git config --global user.email "devops@stake.co.jp" && git config --global user.name "CI Action"
           yarn
           yarn build
           yarn release

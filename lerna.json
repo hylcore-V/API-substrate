@@ -12,7 +12,7 @@
     "command": {
         "version": {
             "allowBranch": "master",
-            "message": "[release] package %s"
+            "message": "[CI] Bump Version"
         }
     }
 }
