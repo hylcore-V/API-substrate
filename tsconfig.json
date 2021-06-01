@@ -4,6 +4,8 @@
         "composite": true,
         "baseUrl": ".",
         "skipLibCheck": true,
+        "sourceMap": true,
+        "removeComments": true,
         "resolveJsonModule": true,
         "pretty": true,
         "paths": {
@@ -11,5 +13,5 @@
         },
         "typeRoots": ["./node_modules/@polkadot/ts", "./node_modules/@types"]
     },
-    "exclude": ["**/dist/**/*", "dist/**/*", "node_modules"]
+    "exclude": ["node_modules"]
 }

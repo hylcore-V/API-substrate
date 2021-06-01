@@ -1,8 +1,7 @@
 {
     "name": "@plasm/types",
-    "version": "1.5.4",
+    "version": "1.5.4-1",
     "description": "Plasm Network node type definitions generated with @polkadot/typegen",
-    "type": "module",
     "keywords": [
         "plasm",
         "typescript",
@@ -24,13 +23,13 @@
     "main": "dist/index.js",
     "types": "dist/index.d.ts",
     "files": [
-        "dist"
+        "dist/"
     ],
     "scripts": {
         "fetch:types": "ts-node --project tsconfig.script.json -r tsconfig-paths/register scripts/readTypes.ts",
         "build": "yarn run clean && yarn run build:lib",
         "test": "echo \"Unit test not implemented!\"",
-        "clean": "rimraf dist",
+        "clean": "tsc --build --clean",
         "prepublish": "yarn run lint && yarn run build",
         "build:lib": "tsc --project tsconfig.json",
         "build:types": "yarn run generate:defs && yarn run generate:meta",
@@ -40,7 +39,7 @@
         "lint:fix": "eslint --fix 'src/**/*.ts'"
     },
     "dependencies": {
-        "@polkadot/api": "^4.10.1",
+        "@polkadot/api": "^4.12.2",
         "cross-env": "7.0.3"
     },
     "devDependencies": {

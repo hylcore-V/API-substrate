@@ -1,8 +1,9 @@
 {
     "extends": "../../tsconfig.json",
     "compilerOptions": {
-        "module": "esnext",
         "baseUrl": ".",
+        "esModuleInterop": true,
+        "allowSyntheticDefaultImports": true,
         "rootDir": "./src",
         "outDir": "./dist",
         "paths": {
@@ -12,5 +13,5 @@
             "@polkadot/types/augment": ["src/interfaces/augment-types.ts"]
         }
     },
-    "exclude": ["scripts"]
+    "exclude": ["scripts", "dist"]
 }
