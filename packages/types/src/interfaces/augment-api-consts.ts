@@ -13,7 +13,6 @@ import type { ApiTypes } from '@polkadot/api/types';
 declare module '@polkadot/api/types/consts' {
   export interface AugmentedConsts<ApiType> {
     babe: {
-      [key: string]: Codec;
       /**
        * The number of **slots** that an epoch takes. We couple sessions to
        * epochs, i.e. we start a new session once the new epoch begins.
@@ -30,16 +29,22 @@ declare module '@polkadot/api/types/consts' {
        * the probability of a slot being empty).
        **/
       expectedBlockTime: Moment & AugmentedConst<ApiType>;
+      /**
+       * Generic const
+       **/
+      [key: string]: Codec;
     };
     balances: {
-      [key: string]: Codec;
       /**
        * The minimum amount required to keep an account open.
        **/
       existentialDeposit: Balance & AugmentedConst<ApiType>;
+      /**
+       * Generic const
+       **/
+      [key: string]: Codec;
     };
     contracts: {
-      [key: string]: Codec;
       /**
        * The maximum number of tries that can be queued for deletion.
        **/
@@ -112,16 +117,22 @@ declare module '@polkadot/api/types/consts' {
        * The minimum amount required to generate a tombstone.
        **/
       tombstoneDeposit: BalanceOf & AugmentedConst<ApiType>;
+      /**
+       * Generic const
+       **/
+      [key: string]: Codec;
     };
     indices: {
-      [key: string]: Codec;
       /**
        * The deposit needed for reserving an index.
        **/
       deposit: BalanceOf & AugmentedConst<ApiType>;
+      /**
+       * Generic const
+       **/
+      [key: string]: Codec;
     };
     nicks: {
-      [key: string]: Codec;
       /**
        * The maximum length a name may be.
        **/
@@ -134,16 +145,22 @@ declare module '@polkadot/api/types/consts' {
        * Reservation fee.
        **/
       reservationFee: BalanceOf & AugmentedConst<ApiType>;
+      /**
+       * Generic const
+       **/
+      [key: string]: Codec;
     };
     plasmRewards: {
-      [key: string]: Codec;
       /**
        * Number of sessions per era.
        **/
       sessionsPerEra: SessionIndex & AugmentedConst<ApiType>;
+      /**
+       * Generic const
+       **/
+      [key: string]: Codec;
     };
     system: {
-      [key: string]: Codec;
       /**
        * Maximum number of block number to block hash mappings to keep (oldest pruned first).
        **/
@@ -172,9 +189,12 @@ declare module '@polkadot/api/types/consts' {
        * Get the chain's current version.
        **/
       version: RuntimeVersion & AugmentedConst<ApiType>;
+      /**
+       * Generic const
+       **/
+      [key: string]: Codec;
     };
     timestamp: {
-      [key: string]: Codec;
       /**
        * The minimum period between blocks. Beware that this is different to the *expected* period
        * that the block production apparatus provides. Your chosen consensus system will generally
@@ -182,9 +202,12 @@ declare module '@polkadot/api/types/consts' {
        * period on default settings.
        **/
       minimumPeriod: Moment & AugmentedConst<ApiType>;
+      /**
+       * Generic const
+       **/
+      [key: string]: Codec;
     };
     transactionPayment: {
-      [key: string]: Codec;
       /**
        * The fee to be paid for making a transaction; the per-byte portion.
        **/
@@ -193,6 +216,20 @@ declare module '@polkadot/api/types/consts' {
        * The polynomial that is applied in order to derive fee from weight.
        **/
       weightToFee: Vec<WeightToFeeCoefficient> & AugmentedConst<ApiType>;
+      /**
+       * Generic const
+       **/
+      [key: string]: Codec;
+    };
+    vesting: {
+      /**
+       * The minimum amount to be transferred to create a new vesting schedule.
+       **/
+      minVestedTransfer: BalanceOf & AugmentedConst<ApiType>;
+      /**
+       * Generic const
+       **/
+      [key: string]: Codec;
     };
   }
 

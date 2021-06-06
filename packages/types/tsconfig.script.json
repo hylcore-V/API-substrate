@@ -1,9 +1,0 @@
-{
-    "extends": "./tsconfig.json",
-    "compilerOptions": {
-        "rootDir": "."
-    },
-    "ts-node": {
-        "require": ["tsconfig-paths/register"]
-    }
-}

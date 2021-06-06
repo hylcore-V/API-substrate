@@ -18,7 +18,6 @@ import type { ApiTypes } from '@polkadot/api/types';
 declare module '@polkadot/api/types/events' {
   export interface AugmentedEvents<ApiType> {
     balances: {
-      [key: string]: AugmentedEvent<ApiType>;
       /**
        * A balance was set by root. \[who, free, reserved\]
        **/
@@ -54,9 +53,12 @@ declare module '@polkadot/api/types/events' {
        * Some balance was unreserved (moved from reserved to free). \[who, value\]
        **/
       Unreserved: AugmentedEvent<ApiType, [AccountId, Balance]>;
+      /**
+       * Generic event
+       **/
+      [key: string]: AugmentedEvent<ApiType>;
     };
     contracts: {
-      [key: string]: AugmentedEvent<ApiType>;
       /**
        * A code with the specified hash was removed.
        * \[code_hash\]
@@ -123,23 +125,32 @@ declare module '@polkadot/api/types/events' {
        * this event is by calling `seal_terminate`.
        **/
       Terminated: AugmentedEvent<ApiType, [AccountId, AccountId]>;
+      /**
+       * Generic event
+       **/
+      [key: string]: AugmentedEvent<ApiType>;
     };
     ethCall: {
-      [key: string]: AugmentedEvent<ApiType>;
       /**
        * A call just executed. \[result\]
        **/
       Executed: AugmentedEvent<ApiType, [AccountId, DispatchResult]>;
+      /**
+       * Generic event
+       **/
+      [key: string]: AugmentedEvent<ApiType>;
     };
     ethereum: {
-      [key: string]: AugmentedEvent<ApiType>;
       /**
        * An ethereum transaction was successfully executed. [from, to/contract_address, transaction_hash, exit_reason]
        **/
       Executed: AugmentedEvent<ApiType, [H160, H160, H256, ExitReason]>;
+      /**
+       * Generic event
+       **/
+      [key: string]: AugmentedEvent<ApiType>;
     };
     evm: {
-      [key: string]: AugmentedEvent<ApiType>;
       /**
        * A deposit has been made at a given address. \[sender, address, value\]
        **/
@@ -168,9 +179,12 @@ declare module '@polkadot/api/types/events' {
        * Ethereum events from contracts.
        **/
       Log: AugmentedEvent<ApiType, [EvmLog]>;
+      /**
+       * Generic event
+       **/
+      [key: string]: AugmentedEvent<ApiType>;
     };
     grandpa: {
-      [key: string]: AugmentedEvent<ApiType>;
       /**
        * New authority set has been applied. \[authority_set\]
        **/
@@ -183,9 +197,12 @@ declare module '@polkadot/api/types/events' {
        * Current authority set has been resumed.
        **/
       Resumed: AugmentedEvent<ApiType, []>;
+      /**
+       * Generic event
+       **/
+      [key: string]: AugmentedEvent<ApiType>;
     };
     imOnline: {
-      [key: string]: AugmentedEvent<ApiType>;
       /**
        * At the end of the session, no offence was committed.
        **/
@@ -198,9 +215,12 @@ declare module '@polkadot/api/types/events' {
        * At the end of the session, at least one validator was found to be \[offline\].
        **/
       SomeOffline: AugmentedEvent<ApiType, [Vec<IdentificationTuple>]>;
+      /**
+       * Generic event
+       **/
+      [key: string]: AugmentedEvent<ApiType>;
     };
     indices: {
-      [key: string]: AugmentedEvent<ApiType>;
       /**
        * A account index was assigned. \[index, who\]
        **/
@@ -213,9 +233,12 @@ declare module '@polkadot/api/types/events' {
        * A account index has been frozen to its current account ID. \[index, who\]
        **/
       IndexFrozen: AugmentedEvent<ApiType, [AccountIndex, AccountId]>;
+      /**
+       * Generic event
+       **/
+      [key: string]: AugmentedEvent<ApiType>;
     };
     nicks: {
-      [key: string]: AugmentedEvent<ApiType>;
       /**
        * A name was changed. \[who\]
        **/
@@ -236,9 +259,12 @@ declare module '@polkadot/api/types/events' {
        * A name was set. \[who\]
        **/
       NameSet: AugmentedEvent<ApiType, [AccountId]>;
+      /**
+       * Generic event
+       **/
+      [key: string]: AugmentedEvent<ApiType>;
     };
     offences: {
-      [key: string]: AugmentedEvent<ApiType>;
       /**
        * There is an offence reported of the given `kind` happened at the `session_index` and
        * (kind-specific) time slot. This event is not deposited for duplicate slashes. last
@@ -246,24 +272,33 @@ declare module '@polkadot/api/types/events' {
        * \[kind, timeslot, applied\].
        **/
       Offence: AugmentedEvent<ApiType, [Kind, OpaqueTimeSlot, bool]>;
+      /**
+       * Generic event
+       **/
+      [key: string]: AugmentedEvent<ApiType>;
     };
     operator: {
-      [key: string]: AugmentedEvent<ApiType>;
       /**
        * Contract assigned to operator: [operator, contract].
        **/
       ContractClaimed: AugmentedEvent<ApiType, [AccountId, SmartContract]>;
+      /**
+       * Generic event
+       **/
+      [key: string]: AugmentedEvent<ApiType>;
     };
     plasmRewards: {
-      [key: string]: AugmentedEvent<ApiType>;
       /**
        * The whole reward issued in that Era.
        * (era_index: EraIndex, reward: Balance)
        **/
       WholeEraReward: AugmentedEvent<ApiType, [EraIndex, Balance]>;
+      /**
+       * Generic event
+       **/
+      [key: string]: AugmentedEvent<ApiType>;
     };
     plasmValidator: {
-      [key: string]: AugmentedEvent<ApiType>;
       /**
        * Validator set changed.
        **/
@@ -276,9 +311,12 @@ declare module '@polkadot/api/types/events' {
        * The amount of minted rewards for validators.
        **/
       ValidatorReward: AugmentedEvent<ApiType, [EraIndex, AccountId, Balance]>;
+      /**
+       * Generic event
+       **/
+      [key: string]: AugmentedEvent<ApiType>;
     };
     scheduler: {
-      [key: string]: AugmentedEvent<ApiType>;
       /**
        * Canceled some task. \[when, index\]
        **/
@@ -291,17 +329,23 @@ declare module '@polkadot/api/types/events' {
        * Scheduled some task. \[when, index\]
        **/
       Scheduled: AugmentedEvent<ApiType, [BlockNumber, u32]>;
+      /**
+       * Generic event
+       **/
+      [key: string]: AugmentedEvent<ApiType>;
     };
     session: {
-      [key: string]: AugmentedEvent<ApiType>;
       /**
        * New session has happened. Note that the argument is the \[session_index\], not the block
        * number as the type might suggest.
        **/
       NewSession: AugmentedEvent<ApiType, [SessionIndex]>;
+      /**
+       * Generic event
+       **/
+      [key: string]: AugmentedEvent<ApiType>;
     };
     sudo: {
-      [key: string]: AugmentedEvent<ApiType>;
       /**
        * The \[sudoer\] just switched identity; the old key is supplied.
        **/
@@ -314,9 +358,12 @@ declare module '@polkadot/api/types/events' {
        * A sudo just took place. \[result\]
        **/
       SudoAsDone: AugmentedEvent<ApiType, [DispatchResult]>;
+      /**
+       * Generic event
+       **/
+      [key: string]: AugmentedEvent<ApiType>;
     };
     system: {
-      [key: string]: AugmentedEvent<ApiType>;
       /**
        * `:code` was updated.
        **/
@@ -337,9 +384,12 @@ declare module '@polkadot/api/types/events' {
        * A new \[account\] was created.
        **/
       NewAccount: AugmentedEvent<ApiType, [AccountId]>;
+      /**
+       * Generic event
+       **/
+      [key: string]: AugmentedEvent<ApiType>;
     };
     utility: {
-      [key: string]: AugmentedEvent<ApiType>;
       /**
        * Batch of dispatches completed fully with no error.
        **/
@@ -349,6 +399,26 @@ declare module '@polkadot/api/types/events' {
        * well as the error. \[index, error\]
        **/
       BatchInterrupted: AugmentedEvent<ApiType, [u32, DispatchError]>;
+      /**
+       * Generic event
+       **/
+      [key: string]: AugmentedEvent<ApiType>;
+    };
+    vesting: {
+      /**
+       * An \[account\] has become fully vested. No further vesting can happen.
+       **/
+      VestingCompleted: AugmentedEvent<ApiType, [AccountId]>;
+      /**
+       * The amount vested has been updated. This could indicate more funds are available. The
+       * balance given is the amount which is left unvested (and thus locked).
+       * \[account, unvested\]
+       **/
+      VestingUpdated: AugmentedEvent<ApiType, [AccountId, Balance]>;
+      /**
+       * Generic event
+       **/
+      [key: string]: AugmentedEvent<ApiType>;
     };
   }
 

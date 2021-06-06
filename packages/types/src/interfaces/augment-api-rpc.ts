@@ -153,7 +153,7 @@ declare module '@polkadot/rpc-core/types.jsonrpc' {
        **/
       accounts: AugmentedRpc<() => Observable<Vec<H160>>>;
       /**
-       * Returns balance of the given account.
+       * Returns the blockNumber
        **/
       blockNumber: AugmentedRpc<() => Observable<U256>>;
       /**
@@ -382,6 +382,10 @@ declare module '@polkadot/rpc-core/types.jsonrpc' {
        * Retrieves the keys with prefix of a specific child storage
        **/
       getChildKeys: AugmentedRpc<(childStorageKey: StorageKey | string | Uint8Array | any, childDefinition: StorageKey | string | Uint8Array | any, childType: u32 | AnyNumber | Uint8Array, key: StorageKey | string | Uint8Array | any, at?: BlockHash | string | Uint8Array) => Observable<Vec<StorageKey>>>;
+      /**
+       * Returns proof of storage for child key entries at a specific block state.
+       **/
+      getChildReadProof: AugmentedRpc<(childStorageKey: PrefixedStorageKey | string | Uint8Array, keys: Vec<StorageKey> | (StorageKey | string | Uint8Array | any)[], at?: BlockHash | string | Uint8Array) => Observable<ReadProof>>;
       /**
        * Retrieves the child storage for a key
        **/

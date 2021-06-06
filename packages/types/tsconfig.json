@@ -4,13 +4,19 @@
         "baseUrl": ".",
         "esModuleInterop": true,
         "allowSyntheticDefaultImports": true,
-        "rootDir": "./src",
-        "outDir": "./dist",
+        "rootDir": "src",
+        "outDir": "dist",
         "paths": {
             "@plasm/types": ["src"],
             "@plasm/types/*": ["src/*"],
             "@polkadot/api/augment": ["src/interfaces/augment-api.ts"],
             "@polkadot/types/augment": ["src/interfaces/augment-types.ts"]
+        }
+    },
+    "ts-node": {
+        "require": ["tsconfig-paths/register"],
+        "compilerOptions": {
+            "rootDir": "."
         }
     },
     "exclude": ["scripts", "dist"]

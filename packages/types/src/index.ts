@@ -1,4 +1,4 @@
-import * as chainDefinitions from './networkSpecs';
+//import * as chainDefinitions from './networkSpecs';
 
 // export all the type definitions by default
-export default { ...chainDefinitions };
+export * from './networkSpecs';

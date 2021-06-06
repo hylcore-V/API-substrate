@@ -1,6 +1,6 @@
 {
     "name": "root",
-    "version": "1.5.3-1",
+    "version": "0.0.1",
     "private": true,
     "repository": {
         "type": "git",
@@ -12,16 +12,14 @@
         "url": "https://github.com/PlasmNetwork/api/issues"
     },
     "homepage": "https://github.com/PlasmNetwork/api#readme",
-    "type": "module",
     "workspaces": [
         "packages/*"
     ],
     "resolutions": {
-        "@polkadot/api": ">=4.10.1",
-        "typescript": "^4.2.4"
+        "typescript": "~4.2.4"
     },
     "engines": {
-        "node": ">=14.0.0",
+        "node": ">=16.0.0",
         "yarn": ">=1.22.0"
     },
     "scripts": {
@@ -34,8 +32,8 @@
         "script:types": "yarn workspace @plasm/types"
     },
     "devDependencies": {
-        "@polkadot/dev": "^0.62.14",
-        "@polkadot/ts": "^0.3.65",
+        "@polkadot/dev": "^0.62.38",
+        "@polkadot/ts": "^0.3.86",
         "@typescript-eslint/eslint-plugin": "4.24.0",
         "@typescript-eslint/parser": "4.24.0",
         "eslint": "7.26.0",

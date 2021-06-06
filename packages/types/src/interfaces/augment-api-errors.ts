@@ -6,7 +6,6 @@ import type { ApiTypes } from '@polkadot/api/types';
 declare module '@polkadot/api/types/errors' {
   export interface AugmentedErrors<ApiType> {
     authorship: {
-      [key: string]: AugmentedError<ApiType>;
       /**
        * The uncle is genesis.
        **/
@@ -35,9 +34,12 @@ declare module '@polkadot/api/types/errors' {
        * Uncles already set in the block.
        **/
       UnclesAlreadySet: AugmentedError<ApiType>;
+      /**
+       * Generic error
+       **/
+      [key: string]: AugmentedError<ApiType>;
     };
     balances: {
-      [key: string]: AugmentedError<ApiType>;
       /**
        * Beneficiary account must pre-exist
        **/
@@ -70,9 +72,12 @@ declare module '@polkadot/api/types/errors' {
        * Vesting balance too high to send value
        **/
       VestingBalance: AugmentedError<ApiType>;
+      /**
+       * Generic error
+       **/
+      [key: string]: AugmentedError<ApiType>;
     };
     contracts: {
-      [key: string]: AugmentedError<ApiType>;
       /**
        * Performing the requested transfer would have brought the contract below
        * the subsistence threshold. No transfer is allowed to do this in order to allow
@@ -212,9 +217,12 @@ declare module '@polkadot/api/types/errors' {
        * The size defined in `T::MaxValueSize` was exceeded.
        **/
       ValueTooLarge: AugmentedError<ApiType>;
+      /**
+       * Generic error
+       **/
+      [key: string]: AugmentedError<ApiType>;
     };
     ethCall: {
-      [key: string]: AugmentedError<ApiType>;
       /**
        * Signature decode fails.
        **/
@@ -223,9 +231,12 @@ declare module '@polkadot/api/types/errors' {
        * Signature and account mismatched.
        **/
       InvalidSignature: AugmentedError<ApiType>;
+      /**
+       * Generic error
+       **/
+      [key: string]: AugmentedError<ApiType>;
     };
     evm: {
-      [key: string]: AugmentedError<ApiType>;
       /**
        * Not enough balance to perform action
        **/
@@ -250,9 +261,12 @@ declare module '@polkadot/api/types/errors' {
        * Withdraw fee failed
        **/
       WithdrawFailed: AugmentedError<ApiType>;
+      /**
+       * Generic error
+       **/
+      [key: string]: AugmentedError<ApiType>;
     };
     grandpa: {
-      [key: string]: AugmentedError<ApiType>;
       /**
        * Attempt to signal GRANDPA change with one already pending.
        **/
@@ -283,9 +297,12 @@ declare module '@polkadot/api/types/errors' {
        * Cannot signal forced change so soon after last.
        **/
       TooSoon: AugmentedError<ApiType>;
+      /**
+       * Generic error
+       **/
+      [key: string]: AugmentedError<ApiType>;
     };
     imOnline: {
-      [key: string]: AugmentedError<ApiType>;
       /**
        * Duplicated heartbeat.
        **/
@@ -294,9 +311,12 @@ declare module '@polkadot/api/types/errors' {
        * Non existent public key.
        **/
       InvalidKey: AugmentedError<ApiType>;
+      /**
+       * Generic error
+       **/
+      [key: string]: AugmentedError<ApiType>;
     };
     nicks: {
-      [key: string]: AugmentedError<ApiType>;
       /**
        * A name is too long.
        **/
@@ -309,9 +329,12 @@ declare module '@polkadot/api/types/errors' {
        * An account isn't named.
        **/
       Unnamed: AugmentedError<ApiType>;
+      /**
+       * Generic error
+       **/
+      [key: string]: AugmentedError<ApiType>;
     };
     operator: {
-      [key: string]: AugmentedError<ApiType>;
       /**
        * For given contract operator already assigned.
        **/
@@ -324,9 +347,12 @@ declare module '@polkadot/api/types/errors' {
        * For given operator contract already assigned.
        **/
       OperatorHasContract: AugmentedError<ApiType>;
+      /**
+       * Generic error
+       **/
+      [key: string]: AugmentedError<ApiType>;
     };
     plasmRewards: {
-      [key: string]: AugmentedError<ApiType>;
       /**
        * Duplicate index.
        **/
@@ -335,9 +361,12 @@ declare module '@polkadot/api/types/errors' {
        * Invalid era to reward.
        **/
       InvalidEraToReward: AugmentedError<ApiType>;
+      /**
+       * Generic error
+       **/
+      [key: string]: AugmentedError<ApiType>;
     };
     scheduler: {
-      [key: string]: AugmentedError<ApiType>;
       /**
        * Failed to schedule a call
        **/
@@ -354,9 +383,12 @@ declare module '@polkadot/api/types/errors' {
        * Given target block number is in the past.
        **/
       TargetBlockNumberInPast: AugmentedError<ApiType>;
+      /**
+       * Generic error
+       **/
+      [key: string]: AugmentedError<ApiType>;
     };
     session: {
-      [key: string]: AugmentedError<ApiType>;
       /**
        * Registered duplicate key.
        **/
@@ -377,16 +409,22 @@ declare module '@polkadot/api/types/errors' {
        * No keys are associated with this account.
        **/
       NoKeys: AugmentedError<ApiType>;
+      /**
+       * Generic error
+       **/
+      [key: string]: AugmentedError<ApiType>;
     };
     sudo: {
-      [key: string]: AugmentedError<ApiType>;
       /**
        * Sender must be the Sudo account
        **/
       RequireSudo: AugmentedError<ApiType>;
+      /**
+       * Generic error
+       **/
+      [key: string]: AugmentedError<ApiType>;
     };
     system: {
-      [key: string]: AugmentedError<ApiType>;
       /**
        * Failed to extract the runtime version from the new runtime.
        * 
@@ -411,6 +449,28 @@ declare module '@polkadot/api/types/errors' {
        * and the new runtime.
        **/
       SpecVersionNeedsToIncrease: AugmentedError<ApiType>;
+      /**
+       * Generic error
+       **/
+      [key: string]: AugmentedError<ApiType>;
+    };
+    vesting: {
+      /**
+       * Amount being transferred is too low to create a vesting schedule.
+       **/
+      AmountLow: AugmentedError<ApiType>;
+      /**
+       * An existing vesting schedule already exists for this account that cannot be clobbered.
+       **/
+      ExistingVestingSchedule: AugmentedError<ApiType>;
+      /**
+       * The account given is not vesting.
+       **/
+      NotVesting: AugmentedError<ApiType>;
+      /**
+       * Generic error
+       **/
+      [key: string]: AugmentedError<ApiType>;
     };
   }
 

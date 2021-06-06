@@ -1,10 +1,9 @@
 {
     "extends": "@polkadot/dev/config/tsconfig.json",
     "compilerOptions": {
-        "composite": true,
         "baseUrl": ".",
+        "composite": true,
         "skipLibCheck": true,
-        "sourceMap": true,
         "removeComments": true,
         "resolveJsonModule": true,
         "pretty": true,
