@@ -7,4 +7,4 @@
 Plasm API is a collection of TypeScript packages that aims to support blockchain application developers using Plasm Network and Substrate.
 
 This repository is still under heavy development.
-At the moment, we only offer `@plasm/types` for client app development using `@polkadot/api`.
+At the moment, we only offer `@astarnetwork/types` for client app development using `@polkadot/api`.

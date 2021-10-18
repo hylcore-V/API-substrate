@@ -7,8 +7,8 @@
         "rootDir": "src",
         "outDir": "dist",
         "paths": {
-            "@plasm/types": ["src"],
-            "@plasm/types/*": ["src/*"],
+            "@astarnetwork/types": ["src"],
+            "@astarnetwork/types/*": ["src/*"],
             "@polkadot/api/augment": ["src/interfaces/augment-api.ts"],
             "@polkadot/types/augment": ["src/interfaces/augment-types.ts"]
         }
