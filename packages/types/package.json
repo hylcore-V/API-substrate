@@ -1,6 +1,6 @@
 {
     "name": "@astarnetwork/types",
-    "version": "1.5.4-4",
+    "version": "1.0.0",
     "description": "Astar Network node custom type definitions",
     "type": "commonjs",
     "keywords": [
@@ -19,6 +19,9 @@
     },
     "author": "Stake Technologies <devops@stake.co.jp>",
     "license": "MIT",
+    "publishConfig": {
+        "access": "public"
+    },
     "bugs": {
         "url": "https://github.com/PlasmNetwork/api/issues"
     },

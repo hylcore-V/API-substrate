@@ -1,6 +1,6 @@
 # @astarnetwork/types
 
-[![NPM](https://nodei.co/npm/@plasm/types.png?downloads=true)](https://www.npmjs.com/package/@astarnetwork/types)
+[![NPM](https://nodei.co/npm/@astarnetwork/types.png?downloads=true)](https://www.npmjs.com/package/@astarnetwork/types)
 
 This package is meant to be used with the [@polakdot-js/api](https://github.com/polkadot-js/api) library.
 
