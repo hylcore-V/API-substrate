@@ -12,7 +12,7 @@ const definitions: RegistryTypes = {
     EraStakingPoints: {
         total: 'Balance',
         stakers: 'BTreeMap<AccountId, Balance>',
-        formerStakedEra: 'EraIndex',
+        _formerStakedEra: 'EraIndex',
         claimedRewards: 'Balance',
     },
     EraRewardAndStake: {

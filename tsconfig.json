@@ -8,7 +8,7 @@
         "resolveJsonModule": true,
         "pretty": true,
         "paths": {
-            "@plasm/*": ["packages/*/src"]
+            "@astar-network/*": ["packages/*/src"]
         },
         "typeRoots": ["./node_modules/@polkadot/ts", "./node_modules/@types"]
     },
