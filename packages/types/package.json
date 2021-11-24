@@ -1,6 +1,6 @@
 {
     "name": "@astar-network/types",
-    "version": "1.0.3",
+    "version": "1.0.4",
     "description": "Astar Network node custom type definitions",
     "type": "commonjs",
     "keywords": [
