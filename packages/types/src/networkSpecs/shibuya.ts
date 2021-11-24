@@ -15,7 +15,17 @@ const definitions: RegistryTypes = {
         _formerStakedEra: 'EraIndex',
         claimedRewards: 'Balance',
     },
+    PalletDappsStakingEraStakingPoints: {
+        total: 'Balance',
+        stakers: 'BTreeMap<AccountId, Balance>',
+        formerStakedEra: 'EraIndex',
+        claimedRewards: 'Balance',
+    },
     EraRewardAndStake: {
+        rewards: 'Balance',
+        staked: 'Balance',
+    },
+    PalletDappsStakingEraRewardAndStake: {
         rewards: 'Balance',
         staked: 'Balance',
     },
